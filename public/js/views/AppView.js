@@ -1,16 +1,16 @@
 define([
   'jquery',
   'underscore',
-  'backbone'  
+  'backbone'
 
 ], function ($, _, Backbone){
-	
+
 	return Backbone.View.extend({	
-		
-		initialize:function(){			
-			
-		},
-		
+
+		initialize:function(){
+
+		}
+
 	});
 
 });

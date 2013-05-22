@@ -15,6 +15,7 @@
     "moment": "~2.0.0",
     "underscore": "~1.4.4",
     "bootstrap": "~2.3.2",
-    "fastclick": "~0.6.7"
+    "fastclick": "~0.6.7",
+    "text": "~2.0.6"
   }
 }

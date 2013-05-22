@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
 
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     requirejs: {
       production: {
         options: {
