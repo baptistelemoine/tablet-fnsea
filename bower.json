@@ -1,0 +1,20 @@
+{
+  "name": "fnsea_tablet",
+  "version": "0.0.0",
+  "main": "public/js/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "backbone": "~1.0.0",
+    "jquery": "~2.0.0",
+    "backbone.paginator": "latest",
+    "requirejs": "~2.1.6",
+    "moment": "~2.0.0",
+    "underscore": "~1.4.4",
+    "bootstrap": "~2.3.2",
+    "fastclick": "~0.6.7"
+  }
+}
