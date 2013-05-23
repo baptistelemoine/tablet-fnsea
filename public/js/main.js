@@ -1,7 +1,7 @@
 require.config({
-  
+
   baseUrl:'js/',
-  
+
   paths: {
     jquery: 'vendor/jquery/jquery',
     underscore: 'vendor/underscore/underscore',
@@ -10,7 +10,6 @@ require.config({
     paginator:'vendor/backbone.paginator/lib/backbone.paginator'
 
   },
-  
   shim: {
     backbone: {
         deps: ['underscore', 'jquery'],
@@ -24,5 +23,5 @@ require.config({
 });
 
 require(['app'], function(){
-  
+
 });

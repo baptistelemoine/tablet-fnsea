@@ -11,17 +11,17 @@ module.exports = function(grunt) {
           out: "dist/project-min.js",
           name:'main'
         }
-      },
-      less:{
-        developement:{
-          src:['public/less/fatstrap.less'],
-          dest:['public/css/fatstrap.css']
-        }
-      },
-      watch:{
-        files:['public/less/*.less'],
-        tasks:['less']
       }
+    },
+    less:{
+      developement:{
+        src : ['public/less/fatstrap.less'],
+        dest : 'public/css/fatstrap.css'
+      }
+    },
+    watch:{
+      files : ['public/less/*.less'],
+      tasks : ['less']
     }
   });
 
