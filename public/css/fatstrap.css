@@ -39,7 +39,7 @@ html {
   background-color: #1f7f5c;
 }
 .handler#handler-filter:checked ~ #wrapper div.filter-menu {
-  visibility: visible;
+  display: block;
 }
 .handler#handler-filter:checked ~ #wrapper #content {
   -webkit-transform: translate3D(0, 60px, 0);
@@ -541,7 +541,7 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 .header.filter-menu {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
-  visibility: hidden;
+  display: none;
   padding: 15px;
   position: relative;
   z-index: 2;

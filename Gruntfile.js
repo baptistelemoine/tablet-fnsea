@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         options: {
           baseUrl: "js/",
           mainConfigFile: "js/main.js",
-          out: "dist/project-min.js",
+          out: "build/fnsea-tablet-min.js",
           name:'main'
         }
       }

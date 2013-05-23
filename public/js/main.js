@@ -7,7 +7,10 @@ require.config({
     underscore: 'vendor/underscore/underscore',
     backbone: 'vendor/backbone/backbone',
     text: 'vendor/text/text',
-    paginator:'vendor/backbone.paginator/lib/backbone.paginator'
+    paginator:'vendor/backbone.paginator/lib/backbone.paginator',
+    fastclick:'vendor/fastclick/lib/fastclick',
+    bootstrap:'vendor/bootstrap/docs/assets/js/bootstrap',
+    layout:'layout/layout'
 
   },
   shim: {
@@ -18,7 +21,8 @@ require.config({
     underscore: {
         exports: '_'
     },
-    paginator : ['underscore', 'backbone']
+    paginator : ['underscore', 'backbone'],
+    layout : ['jquery']
   }
 });
 
