@@ -1,13 +1,13 @@
 require.config({
   
-  baseUrl:'js/vendor',
+  baseUrl:'js/',
   
   paths: {
-    jquery: 'jquery/jquery',
-    underscore: 'underscore/underscore',
-    backbone: 'backbone/backbone',
-    text: 'text/text',
-    paginator:'backbone.paginator/lib/backbone.paginator'
+    jquery: 'vendor/jquery/jquery',
+    underscore: 'vendor/underscore/underscore',
+    backbone: 'vendor/backbone/backbone',
+    text: 'vendor/text/text',
+    paginator:'vendor/backbone.paginator/lib/backbone.paginator'
 
   },
   

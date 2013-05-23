@@ -1,0 +1,33 @@
+
+
+.button {
+	&.square{
+		width: 60px;
+		height: 60px;
+		> span[class^="icon"]:before{			
+			margin:19px;
+			font-size: 22px;
+			color: #fff;
+		}
+	}
+	&.rounded{
+		border-radius: 30px;
+		padding: 8px 5px;
+		left: 8px;
+		position: absolute;
+		span[class^="icon"]{
+			font-size: 20px;
+			color: #fff;
+		}
+	}
+	&.rectangle{
+		width: 55px;
+		height: 40px;
+		span[class^="icon"]:before{
+			font-size: 18px;
+			color: #fff;
+			margin: 12px 0 0 20px;
+		}
+	}
+
+}

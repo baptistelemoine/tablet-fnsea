@@ -1,0 +1,54 @@
+
+@header-width:100%;
+
+.header{
+	width: @header-width;
+	height: 60px;
+	border:0;
+	background-color: @dark;
+	color: #fff;
+	position: relative;
+	z-index: 3;
+	p.title{
+		text-transform: uppercase;
+		text-align: center;
+		padding:19px;		
+		margin:0;
+		font-size: @font-size-large;
+		position: absolute;
+		width:100%;
+		pointer-events: none;
+		box-sizing:border-box;
+	}
+	
+	&.filter-menu{
+		border-top:1px solid rgba(255, 255, 255, .05);
+		box-sizing:border-box;
+		visibility: hidden;
+		padding:15px;
+		position: relative;
+		z-index: 2;
+		p{
+			text-transform:none;
+		}
+		label{
+			text-align: center;
+		}
+		.checkbox input[type="checkbox"] {
+			float: none;
+		}
+	}
+	.button{
+		display: inline-block;
+		&:hover, &:active{
+			background-color: @green;
+		}
+		&.left{
+			border-right:1px solid rgba(255, 255, 255, .05);
+		}
+		&.right{
+			float:right;
+			border-left:1px solid rgba(255, 255, 255, .05);
+		}
+	}
+}

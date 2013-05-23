@@ -5,9 +5,10 @@ define([
 
 ], function ($, _, Backbone){
 
-	return Backbone.View.extend({	
+	return Backbone.View.extend({
 
 		initialize:function(){
+
 
 		}
 

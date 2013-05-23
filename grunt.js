@@ -1,8 +1,6 @@
 
 module.exports = function(grunt) {
 
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     requirejs: {
@@ -13,10 +11,25 @@ module.exports = function(grunt) {
           out: "dist/project-min.js",
           name:'main'
         }
+      },
+      less:{
+        developement:{
+          src:['public/less/fatstrap.less'],
+          dest:['public/css/fatstrap.css']
+        }
+      },
+      watch:{
+        files:['public/less/*.less'],
+        tasks:['less']
       }
     }
   });
 
-  grunt.registerTask('compile', 'requirejs');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('deploy', 'requirejs');
+
 
 };

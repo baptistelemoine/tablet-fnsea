@@ -1,0 +1,60 @@
+
+//todo : fix label vertical alignment for big one;
+
+input[type="radio"]{
+    margin-top: 0;
+    margin-right: 10px;
+}
+
+.regular-radio{
+	-webkit-appearance: none;
+    -moz-appearance:none;
+    padding: 9px;
+    position: relative;
+    margin-right: 10px;
+    margin-top: 0px;
+    border-radius: 50px;
+    &:checked{
+    	background-color: @green;
+    }
+    &:checked:after{
+    	font-family: @font-family-fontello;
+    	font-size: 10px;
+    	content: '\2713';
+    	position: absolute;
+        border-radius: 50px;
+    	top: 4px;
+    	left: 4px;
+    	color: #fff;
+    }
+    .regular-radio-theme(@theme);
+}
+
+.regular-radio-theme(dark){
+	background-color: @dark;
+	// color:#fff;
+	border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.regular-radio-theme(light){
+	background-color: @light;
+	border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.big-radio {
+    padding: 18px;
+}
+ 
+.big-radio:checked:after {
+    font-size: 18px;
+    left: 11px;
+    top: 9px;
+}
+
+label.radio{
+    color: @dark;
+    .label-color(@theme);
+}
+
+.label-color(@theme) when (@theme = dark) { color: #fff; }
+

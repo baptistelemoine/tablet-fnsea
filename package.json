@@ -1,7 +1,7 @@
 {
   "name": "fnsea_tablet",
   "private": "true",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "FNSEA tablet optimized website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +16,9 @@
   "readmeFilename": "README",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-requirejs": "~0.4.1"
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.3",
+    "grunt-contrib-less": "~0.5.1"
   },
   "dependencies": {
     "express": "~3.2.5"
