@@ -10,7 +10,8 @@ require.config({
     paginator:'vendor/backbone.paginator/lib/backbone.paginator',
     fastclick:'vendor/fastclick/lib/fastclick',
     bootstrap:'vendor/bootstrap/docs/assets/js/bootstrap',
-    layout:'layout/layout'
+    layout:'layout/layout',
+    moment:'vendor/moment/min/moment.min'
 
   },
   shim: {
@@ -22,7 +23,8 @@ require.config({
         exports: '_'
     },
     paginator : ['underscore', 'backbone'],
-    layout : ['jquery']
+    layout : ['jquery'],
+    bootstrap : ['jquery']
   }
 });
 

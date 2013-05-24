@@ -3,16 +3,27 @@ define([
   'underscore',
   'backbone',
   'views/comps/menu',
-  'views/comps/header'
+  'views/comps/header',
+  'router',
+  'collections/articles',
+  'views/ListView'
 
-], function ($, _, Backbone, Menu, Header){
+], function ($, _, Backbone, Menu, Header, Router, Articles, ListView){
 
 	return Backbone.View.extend({
 
+		apiURL : 'http://apifnsea.herokuapp.com/',
+
 		initialize:function(){
 
-			_.bindAll(this, 'layout');
+			_.bindAll(this, 'layout', 'getAllThema');
+
+			//generic layout
 			this.layout();
+
+			this.appRouter = new Router();
+			this.appRouter.on('route:getAllThema', this.getAllThema);
+			Backbone.history.start({pushState:false});
 
 		},
 
@@ -22,6 +33,21 @@ define([
 
 			var header = new Header();
 			header.render();
+		},
+
+		getAllThema:function(hash){
+			var currentURL = this.apiURL.concat(Backbone.history.fragment);
+			var listView = new ListView({
+				collection:new Articles({
+					url:currentURL
+				})
+			});
+			listView.collection.pager({
+				reset:true,
+				error:function(err){
+					console.error(err);
+				}
+			});
 		}
 
 	});
