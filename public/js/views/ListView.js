@@ -33,14 +33,7 @@ define([
         },
 
         addAll:function(){
-
-            var sortedCollection = this.collection.sortBy(_.keys(this.collection.models), function (val){
-                return val % 3;
-                // console.log(val)
-            });
-            console.log(sortedCollection);
-
-            // this.collection.each(this.render);
+            this.collection.each(this.render);
             this.isLoading = false;
         },
 
