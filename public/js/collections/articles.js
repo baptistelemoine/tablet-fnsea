@@ -15,6 +15,10 @@ define([
             this.pUrl = param.url;
         },
 
+        /*comparator:function(model){
+            return this.indexOf(model) % 3;
+        },*/
+
         paginator_core: {
             type: 'GET',
             dataType: 'json',
@@ -26,7 +30,7 @@ define([
         paginator_ui: {
             firstPage: 0,
             currentPage: 0,
-            perPage: 5,
+            perPage: 6,
             totalRecords:200,
             totalPages: 0
         },
