@@ -11,7 +11,8 @@ require.config({
     fastclick:'vendor/fastclick/lib/fastclick',
     bootstrap:'vendor/bootstrap/docs/assets/js/bootstrap',
     layout:'layout/layout',
-    moment:'vendor/moment/min/moment.min'
+    moment:'vendor/moment/min/moment.min',
+    enquire:'vendor/enquire/dist/enquire'
 
   },
   shim: {

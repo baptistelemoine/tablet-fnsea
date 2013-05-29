@@ -16,6 +16,7 @@
     "underscore": "~1.4.4",
     "bootstrap": "~2.3.2",
     "fastclick": "~0.6.7",
-    "text": "~2.0.6"
+    "text": "~2.0.6",
+    "enquire": "~2.0.1"
   }
 }

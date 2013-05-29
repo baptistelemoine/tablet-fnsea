@@ -15,9 +15,9 @@ define([
             this.pUrl = param.url;
         },
 
-        comparator:function(model){
+        /*comparator:function(model){
             return this.indexOf(model) % 2;
-        },
+        },*/
 
         paginator_core: {
             type: 'GET',
