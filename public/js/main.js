@@ -25,7 +25,10 @@ require.config({
     },
     paginator : ['underscore', 'backbone'],
     layout : ['jquery'],
-    bootstrap : ['jquery']
+    bootstrap : ['jquery'],
+    enquire:{
+      exports:'enquire'
+    }
   }
 });
 

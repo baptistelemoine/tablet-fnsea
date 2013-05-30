@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/renderer/ArticleItem'
+    'views/renderer/ArticleItem',
+    'enquire'
 
-    ], function ($, _, Backbone, ArticleItem) {
+    ], function ($, _, Backbone, ArticleItem, enquire) {
 
     return Backbone.View.extend({
 
@@ -19,9 +20,8 @@ define([
 
         initialize:function(options) {
 
-          _.bindAll(this, 'render', 'addAll');
-          this.collection.on('reset', this.addAll);
-
+            _.bindAll(this, 'render', 'addAll');
+            this.collection.on('reset', this.addAll);
         },
 
         render:function(item){
@@ -33,11 +33,9 @@ define([
             this.$container.append(article.render().el);
             this.cache.push(article.el);
 
-            this.layout();
-
         },
 
-        layout:function(){
+        layoutColumns:function(){
             var self = this;
             if(this.cache.length % 6 === 0){
                 var sorted = _.sortBy(this.cache, function (value){
@@ -50,6 +48,20 @@ define([
         addAll:function(){
             this.collection.each(this.render);
             this.isLoading = false;
+
+            var self = this;
+            enquire.unregister();
+            enquire.register('screen and (max-width:800px)', {
+                setup:function(){
+                    self.layoutColumns();
+                },
+                match:function(){
+                    self.$container.empty().append(self.cache);
+                },
+                unmatch:function(){
+                    self.layoutColumns();
+                }
+            });
         },
 
         checkScroll:function(e){
@@ -61,13 +73,12 @@ define([
                 this.isLoading = true;
                 this.collection.requestNextPage({
                     success:function(data){
-                        // self.addAll();
-                        // self.$preloader.hide();
+                        self.addAll();
+                        self.$preloader.hide();
                     }
                 });
             }
         }
 
     });
-
 });
