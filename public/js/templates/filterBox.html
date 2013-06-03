@@ -1,0 +1,11 @@
+<!-- Filter box -->
+<div class="header filter-menu">
+  <div class="row-fluid">
+    <% _.each(this.list, function (value){ %>
+      <label class="checkbox inline span3">
+        <input type="checkbox" checked value="option1"> 
+        <div class="regular-checkbox dark <%= value.color %>"><span><%= value.text %></span></div>
+      </label>
+    <% }) %>
+  </div>
+</div>

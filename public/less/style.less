@@ -39,7 +39,15 @@ body, html{
         background-color: @green;
       }
     }    
-  }  
+  }
+
+  &#handler-filter{
+    & ~ #wrapper {
+      label[for="handler-filter"]{
+        display: none;
+      }
+    }
+  }
 
   &#handler-filter:checked {
     
@@ -201,5 +209,5 @@ ul, li { list-style: none; margin:0;}
 }
 
 .blue{
-  color:@blue !important;
+  // color:@blue !important;
 }

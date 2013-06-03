@@ -41,7 +41,9 @@ define([
 			var listView = new ListView({
 				collection:new Articles({
 					url:currentURL
-				})
+				}),
+				filterEnabled:true,
+				filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
 			});
 			listView.collection.pager({
 				reset:true,

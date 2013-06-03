@@ -3,9 +3,11 @@ define([
     'underscore',
     'backbone',
     'views/renderer/ArticleItem',
-    'enquire'
+    'views/renderer/JobItem',
+    'enquire',
+    'views/comps/filter'
 
-    ], function ($, _, Backbone, ArticleItem, enquire) {
+    ], function ($, _, Backbone, ArticleItem, JobItem, enquire, Filter) {
 
     return Backbone.View.extend({
 
@@ -18,21 +20,51 @@ define([
         isLoading: false,
         cache: [],
 
+        filterEnabled:false,
+
         initialize:function(options) {
 
             _.bindAll(this, 'render', 'addAll');
             this.collection.on('reset', this.addAll);
+
+            this.filterEnabled = options.filterEnabled;
+
+            if(this.filterEnabled) new Filter({
+                collection:this.collection,
+                list:options.filterList
+            });
         },
 
         render:function(item){
 
-			var article = new ArticleItem({
-				model:item
-			});
+            var article = null;
+
+            switch(this.type(item)){
+                case 'article' : {
+                    article = new ArticleItem({
+                        model:item
+                    });
+                }
+                break;
+                case 'job' : {
+                    article = new JobItem({
+                        model:item
+                    });
+                }
+                break;
+            }
 
             this.$container.append(article.render().el);
             this.cache.push(article.el);
 
+        },
+
+        type:function(model){
+
+            if (typeof(model.get('themaUrl')) !== 'undefined') return 'article';
+            if (typeof(model.get('contract')) !== 'undefined') return 'job';
+            if (typeof(model.get('pressType')) !== 'undefined') return 'presse';
+            if (typeof(model.get('beginning')) !== 'undefined') return 'evenement';
         },
 
         layoutColumns:function(){

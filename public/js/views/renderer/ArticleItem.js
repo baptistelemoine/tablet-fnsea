@@ -22,7 +22,6 @@ define([
 
         render:function(){
 
-            console.log(this.model)
 			var thema = ConfigManager.getThemaProp(_.last(this.model.get('themaUrl').split('/')));
 			this.model.set({'thema':thema.name}, {silent:true});
 			this.model.set({'count':34, silent:true});
