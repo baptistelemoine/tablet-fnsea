@@ -6,9 +6,10 @@ define([
   'views/comps/header',
   'router',
   'collections/articles',
-  'views/ListView'
+  'views/ListView',
+  'collections/videos'
 
-], function ($, _, Backbone, Menu, Header, Router, Articles, ListView){
+], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos){
 
 	return Backbone.View.extend({
 
@@ -17,13 +18,14 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getAllThema');
+			_.bindAll(this, 'layout', 'getAllThema', 'getHome');
 
 			//generic layout
 			this.layout();
 
 			this.appRouter = new Router();
 			this.appRouter.on('route:getAllThema', this.getAllThema);
+			this.appRouter.on('route:root', this.getHome);
 			Backbone.history.start({pushState:false});
 
 		},
@@ -51,6 +53,40 @@ define([
 					console.error(err);
 				}
 			});
+		},
+
+		getHome:function(hash){
+			var self = this;
+
+			var articles = new Articles({
+				url:self.apiURL
+			});
+			var videos = new Videos();
+			var coll = new Backbone.Collection([], {
+				comparator:function(model){
+					return - (new Date(model.get('updated')).getTime() || new Date(model.get('entry').publishedDate).getTime());
+				}
+			});
+
+			var dfd = $.Deferred();
+
+			$.when(articles.pager(), videos.pager())
+			.fail(function(err){
+				console.error(err);
+			})
+			.done(function(){
+				coll.add(articles.models);
+				coll.add(videos.models, {add:true});
+				dfd.resolve();
+			});
+
+			dfd.promise().done(function(){				
+				var listView = new ListView({
+					collection:coll
+				});
+				coll.trigger('reset');
+			});
+
 		}
 
 	});

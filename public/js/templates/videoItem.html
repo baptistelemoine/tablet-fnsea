@@ -1,22 +1,20 @@
-<div class="content-box video-box">
   <div class="left-nav">
     <div class="button square bg-blue-twitter"><span class="icon-exchange" /></div>
   </div>        
   <div class="video-thumb">
     <!-- <img src="images/test2.png" /> -->
-    <img src="<%= thumb %>" />
+    <img src="<%= thumbnail.hqDefault %>" />
     <div class="button rectangle bg-green"><span class="icon-play" /></div>
-    <div class="video-length"><%= duration %></div>
+    <div class="video-length"><%= duration/3600 %></div>
   </div>
   <div class="title-container">
     <p><%= title %></p>
   </div>
   <div class="summary-container">
-    <p><%= summary %></p>
+    <p><%= description %></p>
   </div>
   <div class="content-box-footer">
-    <span class="icon-clock"></span><span><%= time %></span>
-    <span class="icon-eye-1"></span><span>vue <%= count %> fois</span>
+
+    <span class="icon-eye-1"></span><span>vue <%= viewCount %> fois</span>
     <div class="button bg-green"><p>Vidéos<!-- <span class="badge">43</span> --></p></div>
   </div>
-</div>

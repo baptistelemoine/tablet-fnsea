@@ -3,11 +3,11 @@ define([
     'underscore',
     'backbone',
     'views/renderer/ArticleItem',
-    'views/renderer/JobItem',
+    'views/renderer/VideoItem',
     'enquire',
     'views/comps/filter'
 
-    ], function ($, _, Backbone, ArticleItem, JobItem, enquire, Filter) {
+    ], function ($, _, Backbone, ArticleItem, VideoItem, enquire, Filter) {
 
     return Backbone.View.extend({
 
@@ -23,7 +23,7 @@ define([
         filterEnabled:false,
 
         initialize:function(options) {
-
+            console.log(this.collection)
             _.bindAll(this, 'render', 'addAll');
             this.collection.on('reset', this.addAll);
 
@@ -46,8 +46,8 @@ define([
                     });
                 }
                 break;
-                case 'job' : {
-                    article = new JobItem({
+                case 'video' : {
+                    article = new VideoItem({
                         model:item
                     });
                 }
@@ -65,6 +65,7 @@ define([
             if (typeof(model.get('contract')) !== 'undefined') return 'job';
             if (typeof(model.get('pressType')) !== 'undefined') return 'presse';
             if (typeof(model.get('beginning')) !== 'undefined') return 'evenement';
+            if (typeof(model.get('updated')) !== 'undefined') return 'video';
         },
 
         layoutColumns:function(){
@@ -78,6 +79,7 @@ define([
         },
 
         addAll:function(){
+
             this.collection.each(this.render);
             this.isLoading = false;
 
