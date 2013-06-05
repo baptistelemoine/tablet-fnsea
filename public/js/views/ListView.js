@@ -23,7 +23,7 @@ define([
         filterEnabled:false,
 
         initialize:function(options) {
-            console.log(this.collection)
+
             _.bindAll(this, 'render', 'addAll');
             this.collection.on('reset', this.addAll);
 

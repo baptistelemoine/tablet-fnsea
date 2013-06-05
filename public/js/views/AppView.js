@@ -7,9 +7,10 @@ define([
   'router',
   'collections/articles',
   'views/ListView',
-  'collections/videos'
+  'collections/videos',
+  'collections/mix'
 
-], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos){
+], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection){
 
 	return Backbone.View.extend({
 
@@ -59,34 +60,23 @@ define([
 			var self = this;
 
 			var articles = new Articles({
-				url:self.apiURL
+				url:self.apiURL.concat('/toutes-les-thematiques')
 			});
 			var videos = new Videos();
-			var coll = new Backbone.Collection([], {
-				comparator:function(model){
-					return - (new Date(model.get('updated')).getTime() || new Date(model.get('entry').publishedDate).getTime());
-				}
-			});
 
-			var dfd = $.Deferred();
+			var mix = new MixCollection([],{
+				collections:[articles, videos]
+			});
 
 			$.when(articles.pager(), videos.pager())
-			.fail(function(err){
-				console.error(err);
-			})
-			.done(function(){
-				coll.add(articles.models);
-				coll.add(videos.models, {add:true});
-				dfd.resolve();
-			});
-
-			dfd.promise().done(function(){				
+			.fail(function(err){ console.error(err); })
+			.done(function (){
 				var listView = new ListView({
-					collection:coll
+					collection:mix
 				});
-				coll.trigger('reset');
+				var result = _.union(articles.models, videos.models);
+				mix.reset(result);
 			});
-
 		}
 
 	});
