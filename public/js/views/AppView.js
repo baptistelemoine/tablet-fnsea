@@ -74,6 +74,7 @@ define([
 				var listView = new ListView({
 					collection:mix
 				});
+				console.log(videos.models)
 				var result = _.union(articles.models, videos.models);
 				mix.reset(result);
 			});

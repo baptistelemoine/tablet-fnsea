@@ -701,17 +701,26 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   margin-top: -3px;
 }
 .content-box.video-box .video-thumb {
-  padding: 30px;
+  padding-top: 50%;
+  margin: 30px;
   background-color: #285258;
   position: relative;
-  background-clip: content-box;
+  height: 0;
 }
 .content-box.video-box .video-thumb img {
   -moz-opacity: 0.1;
   -webkit-opacity: 0.1;
   opacity: 0.1;
   width: 100%;
+  height: 100%;
   margin: 0;
+}
+.content-box.video-box .video-thumb .inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 .content-box.video-box .video-thumb .button,
 .content-box.video-box .video-thumb .video-length {
