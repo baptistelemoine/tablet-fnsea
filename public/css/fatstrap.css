@@ -701,7 +701,7 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   margin-top: -3px;
 }
 .content-box.video-box .video-thumb {
-  padding-top: 50%;
+  padding-top: 45%;
   margin: 30px;
   background-color: #285258;
   position: relative;
@@ -733,8 +733,8 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 .content-box.video-box .video-thumb .video-length {
   color: #fff;
   font-size: 18px;
-  bottom: 15%;
-  right: 10%;
+  bottom: 8%;
+  right: 5%;
 }
 .content-box.video-box .content-box-footer {
   position: relative;

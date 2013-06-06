@@ -8,9 +8,10 @@ define([
   'collections/articles',
   'views/ListView',
   'collections/videos',
-  'collections/mix'
+  'collections/mix',
+  'collections/albums'
 
-], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection){
+], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums){
 
 	return Backbone.View.extend({
 
@@ -61,6 +62,13 @@ define([
 				url:self.apiURL
 			});
 			var videos = new Videos();
+
+			var albums = new Albums();
+			albums.pager({
+				success:function(data){
+					console.log(data);
+				}
+			});
 
 			var mix = new MixCollection([],{
 				collections:[articles, videos]

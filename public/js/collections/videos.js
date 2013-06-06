@@ -17,17 +17,17 @@ define([
 			dataType: 'jsonp',
 			url:ConfigManager.GDATA_URL
 		},
-		
+
 		paginator_ui: {
 			firstPage: 0,
 			currentPage: 1,
 			totalPages: 100,
 			orderby:'published',
-			nb_results:5,
+			nb_results:6,
 			author:'lafnsea',
 			totalRecords:2000
 		},
-		
+
 		server_api: {
 			'orderby': function() { return  this.orderby; },
 			'author' : function () { return this.author; },

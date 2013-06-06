@@ -39,7 +39,8 @@ define(function(){
 		FB_SHARE_URL:'http://www.facebook.com/share.php?u=',
 		TW_SHARE_URL:'https://twitter.com/share?url=',
 		GOOG_SHARE_URL:'https://plus.google.com/share?url=',
-		SITE_URL:'http://www.fnsea.fr'
+		SITE_URL:'http://www.fnsea.fr',
+		API_URL:'http://apifnsea.herokuapp.com/'
 
 
 	}
