@@ -44,9 +44,7 @@ define([
 			var listView = new ListView({
 				collection:new Articles({
 					url:currentURL
-				}),
-				filterEnabled:true,
-				filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
+				})
 			});
 			listView.collection.pager({
 				reset:true,
@@ -60,7 +58,7 @@ define([
 			var self = this;
 
 			var articles = new Articles({
-				url:self.apiURL.concat('/toutes-les-thematiques')
+				url:self.apiURL
 			});
 			var videos = new Videos();
 
@@ -72,9 +70,10 @@ define([
 			.fail(function(err){ console.error(err); })
 			.done(function (){
 				var listView = new ListView({
-					collection:mix
+					collection:mix,
+					filterEnabled:true,
+					filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
 				});
-				console.log(videos.models)
 				var result = _.union(articles.models, videos.models);
 				mix.reset(result);
 			});

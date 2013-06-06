@@ -4,10 +4,13 @@ define([
     'backbone',
     'views/renderer/ArticleItem',
     'views/renderer/VideoItem',
+    'views/renderer/JobItem',
+    'views/renderer/PresseItem',
+    'views/renderer/EventItem',
     'enquire',
     'views/comps/filter'
 
-    ], function ($, _, Backbone, ArticleItem, VideoItem, enquire, Filter) {
+    ], function ($, _, Backbone, ArticleItem, VideoItem, JobItem, PresseItem, EventItem, enquire, Filter) {
 
     return Backbone.View.extend({
 
@@ -41,15 +44,23 @@ define([
 
             switch(this.type(item)){
                 case 'article' : {
-                    article = new ArticleItem({
-                        model:item
-                    });
+                    article = new ArticleItem({model:item});
                 }
                 break;
                 case 'video' : {
-                    article = new VideoItem({
-                        model:item
-                    });
+                    article = new VideoItem({model:item});
+                }
+                break;
+                case 'job' : {
+                    article = new JobItem({model:item});
+                }
+                break;
+                case 'evenement' : {
+                    article = new EventItem({model:item});
+                }
+                break;
+                case 'presse' : {
+                    article = new PresseItem({model:item});
                 }
                 break;
             }
@@ -70,7 +81,8 @@ define([
 
         layoutColumns:function(){
             var self = this;
-            if(this.cache.length % 6 === 0){
+
+            if(this.cache.length % this.collection.length === 0){
                 var sorted = _.sortBy(this.cache, function (value){
                     return _.indexOf(self.cache, value) % 2;
                 });
