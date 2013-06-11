@@ -28,6 +28,7 @@ define([
 			this.appRouter = new Router();
 			this.appRouter.on('route:getAllThema', this.getAllThema);
 			this.appRouter.on('route:root', this.getHome);
+			this.appRouter.on('route:getAlbums', this.getAlbums);
 			Backbone.history.start({pushState:false});
 
 		},
@@ -63,14 +64,6 @@ define([
 			});
 			var videos = new Videos();
 
-			var albums = new Albums();
-			albums.pager({
-				reset:true,
-				success:function(data){
-					// console.log(data);
-				}
-			});
-
 			var mix = new MixCollection([],{
 				collections:[articles, videos]
 			});
@@ -85,6 +78,20 @@ define([
 				});
 				var result = _.union(articles.models, videos.models);
 				mix.reset(result);
+			});
+		},
+
+		getAlbums:function(){
+
+			var listView = new ListView({
+				collection:new Albums()
+			});
+
+			listView.collection.pager({
+				reset:true,
+				error:function(err){
+					console.error(err);
+				}
 			});
 		}
 

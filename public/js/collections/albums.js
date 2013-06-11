@@ -15,11 +15,22 @@ define([
 
 		initialize:function(){
 			this.on('reset', this.onReset, this);
+			this.on('add', this.onAdd, this);
+		},
+
+		onAdd:function(album){
+			album.get('photos').fetch({
+				reset:true,
+				data:{limit:100}
+			});
 		},
 
 		onReset:function(){
 			this.each(function (album){
-				album.photos.fetch();
+				album.get('photos').fetch({
+					reset:true,
+					data:{limit:100}
+				});
 			});
 		},
 

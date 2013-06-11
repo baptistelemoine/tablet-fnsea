@@ -7,10 +7,11 @@ define([
     'views/renderer/JobItem',
     'views/renderer/PresseItem',
     'views/renderer/EventItem',
+    'views/renderer/AlbumItem',
     'enquire',
     'views/comps/filter'
 
-    ], function ($, _, Backbone, ArticleItem, VideoItem, JobItem, PresseItem, EventItem, enquire, Filter) {
+    ], function ($, _, Backbone, ArticleItem, VideoItem, JobItem, PresseItem, EventItem, AlbumItem, enquire, Filter) {
 
     return Backbone.View.extend({
 
@@ -63,6 +64,11 @@ define([
                     article = new PresseItem({model:item});
                 }
                 break;
+                case 'album' : {
+                    article = new AlbumItem({model:item});
+                }
+                break;
+
             }
 
             this.$container.append(article.render().el);
@@ -77,6 +83,7 @@ define([
             if (typeof(model.get('pressType')) !== 'undefined') return 'presse';
             if (typeof(model.get('beginning')) !== 'undefined') return 'evenement';
             if (typeof(model.get('updated')) !== 'undefined') return 'video';
+            if (typeof(model.get('created_time')) !== 'undefined') return 'album';
         },
 
         layoutColumns:function(){

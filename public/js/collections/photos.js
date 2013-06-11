@@ -17,6 +17,10 @@ define([
 
         url:function(){
 			return ConfigManager.GRAPH_URL + this.album.get('id') + '/photos';
+        },
+
+        parse:function(response){
+			return response.data;
         }
     });
 
