@@ -65,8 +65,9 @@ define([
 
 			var albums = new Albums();
 			albums.pager({
+				reset:true,
 				success:function(data){
-					console.log(data);
+					// console.log(data);
 				}
 			});
 

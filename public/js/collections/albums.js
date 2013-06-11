@@ -3,16 +3,30 @@ define([
 	'underscore',
 	'backbone',
 	'paginator',
-	'utils/ConfigManager'
+	'utils/ConfigManager',
+	'models/album',
+	'collections/photos'
 
-], function ($, _, Backbone, Paginator, ConfigManager){
+], function ($, _, Backbone, Paginator, ConfigManager, Album, Photos){
 
 	return Backbone.Paginator.requestPager.extend({
+
+		model:Album,
+
+		initialize:function(){
+			this.on('reset', this.onReset, this);
+		},
+
+		onReset:function(){
+			this.each(function (album){
+				album.photos.fetch();
+			});
+		},
 
 		paginator_core: {
 			type: 'GET',
 			dataType: 'json',
-			url:ConfigManager.API_URL.concat('facebook/albums/'+ConfigManager.FACEBOOK_USER)
+			url:ConfigManager.GRAPH_URL.concat(ConfigManager.FACEBOOK_USER + '/albums')
 		},
 
 		paginator_ui: {

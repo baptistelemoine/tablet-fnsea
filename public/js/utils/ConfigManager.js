@@ -34,7 +34,7 @@ define(function(){
 		},
 
 		FACEBOOK_USER:'lafnsea',
-		GRAPH_URL:'http://graph.facebook.com/',
+		GRAPH_URL:'https://graph.facebook.com/',
 		GDATA_URL:'http://gdata.youtube.com/feeds/api/videos?alt=jsonc&v=2',
 		FB_SHARE_URL:'http://www.facebook.com/share.php?u=',
 		TW_SHARE_URL:'https://twitter.com/share?url=',
