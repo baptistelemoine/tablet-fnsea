@@ -32,6 +32,27 @@ define([
 				});
 			}
 
+			/*
+				CALL THIS CODE IN APPVIEW
+			*/
+
+			/*var mix = new MixCollection([],{
+				collections:[articles, videos, albums]
+			});
+
+			$.when(articles.pager(), videos.pager(), albums.pager())
+			.fail(function(err){ console.error(err); })
+			.done(function (){
+				var listView = new ListView({
+					collection:mix,
+					filterEnabled:true,
+					filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
+				});
+				var result = _.union(articles.models, videos.models, albums.models);
+				mix.reset(result);
+			});
+*/
+
 		});
 
 	});

@@ -371,7 +371,6 @@ input[type="checkbox"] {
 input[type="checkbox"] + div.regular-checkbox {
   width: 20px;
   height: 20px;
-  pointer-events: none;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0);
 }
@@ -383,22 +382,22 @@ input[type="checkbox"] + div.regular-checkbox span {
   position: absolute;
   left: 30px;
 }
-input[type="checkbox"]:checked + div.purple {
+input[type="checkbox"]:checked + div.regular-checkbox.purple {
   background-color: #6a5a8c;
 }
-input[type="checkbox"]:checked + div.green {
+input[type="checkbox"]:checked + div.regular-checkbox.green {
   background-color: #1f7f5c;
 }
-input[type="checkbox"]:checked + div.orange {
+input[type="checkbox"]:checked + div.regular-checkbox.orange {
   background-color: #de8650;
 }
-input[type="checkbox"]:checked + div.blue {
+input[type="checkbox"]:checked + div.regular-checkbox.blue {
   background-color: #5a9aa8;
 }
-input[type="checkbox"]:checked + div.pink {
+input[type="checkbox"]:checked + div.regular-checkbox.pink {
   background-color: #8c5d79;
 }
-input[type="checkbox"]:checked + div:after {
+input[type="checkbox"]:checked + div.regular-checkbox:after {
   font-family: 'fontello';
   font-size: 12px;
   content: '\2713';

@@ -67,29 +67,15 @@ define([
 			var videos = new Videos({nb_results:20});
 			var albums = new Albums({nb_results:20});
 
-			/*var mix = new MixCollection([],{
-				collections:[articles, videos, albums]
-			});
-
-			$.when(articles.pager(), videos.pager(), albums.pager())
-			.fail(function(err){ console.error(err); })
-			.done(function (){
-				var listView = new ListView({
-					collection:mix,
-					filterEnabled:true,
-					filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
-				});
-				var result = _.union(articles.models, videos.models, albums.models);
-				mix.reset(result);
-			});
-*/
 			$.when(articles.pager(),videos.pager(),albums.pager())
 			.fail(function(err){ console.error(err); })
 			.done(function (){
 				var result = _.union(articles.models, videos.models, albums.models);
 				var mixed = new Mixed(result, {perPage:6});
 				var listView = new ListView({
-					collection:mixed
+					collection:mixed,
+					filterEnabled:true,
+					filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
 				});
 				mixed.fetch();
 				mixed.goTo(1);
