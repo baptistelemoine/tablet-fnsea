@@ -13,7 +13,7 @@ define([
 			},
 
 			comparator:function(model){
-				return - (new Date(model.get('updated')).getTime() || new Date(model.get('entry').publishedDate).getTime());
+				return - (new Date(model.get('updated')).getTime() || new Date(model.get('created_time')).getTime() || new Date(model.get('entry').publishedDate).getTime());
 			},
 
 			requestNextPage:function(){

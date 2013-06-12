@@ -9,9 +9,10 @@ define([
   'views/ListView',
   'collections/videos',
   'collections/mix',
-  'collections/albums'
+  'collections/albums',
+  'collections/Mixed'
 
-], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums){
+], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed){
 
 	return Backbone.View.extend({
 
@@ -64,11 +65,13 @@ define([
 			});
 			var videos = new Videos();
 
+			var albums = new Albums();
+
 			var mix = new MixCollection([],{
-				collections:[articles, videos]
+				collections:[articles, videos, albums]
 			});
 
-			$.when(articles.pager(), videos.pager())
+			/*$.when(articles.pager(), videos.pager(), albums.pager())
 			.fail(function(err){ console.error(err); })
 			.done(function (){
 				var listView = new ListView({
@@ -76,8 +79,32 @@ define([
 					filterEnabled:true,
 					filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
 				});
-				var result = _.union(articles.models, videos.models);
+				var result = _.union(articles.models, videos.models, albums.models);
 				mix.reset(result);
+			});*/
+
+			$.when(articles.pager({
+				paginator_ui:{
+					perPage:10
+				}
+			}), videos.pager({
+				paginator_ui:{
+					perPage:10
+				}
+			}), albums.pager({
+				paginator_ui:{
+					perPage:10
+				}
+			}))
+			.fail(function(err){ console.error(err); })
+			.done(function (){
+				var result = _.union(articles.models, videos.models, albums.models);
+				var mixed = new Mixed(result, {perPage:6});
+				var listView = new ListView({
+					collection:mixed
+				});
+				mixed.fetch();
+				mixed.goTo(1);
 			});
 		},
 
