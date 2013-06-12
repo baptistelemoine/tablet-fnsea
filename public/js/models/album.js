@@ -7,11 +7,12 @@ define([
     return Backbone.Model.extend({
 
 		defaults:{
-			'description' : 'no desc'
+			'description' : 'no desc',
+			'item_type':'album'
 		},
 
 		initialize:function(){
-			this.attributes.photos = new Photos([], {album:this});
+			this.set('photos', new Photos([], {album:this}));
 		}
     });
 

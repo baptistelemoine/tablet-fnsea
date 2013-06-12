@@ -61,17 +61,17 @@ define([
 			var self = this;
 
 			var articles = new Articles({
-				url:self.apiURL
+				url:self.apiURL,
+				nb_results:20
 			});
-			var videos = new Videos();
+			var videos = new Videos({nb_results:20});
+			var albums = new Albums({nb_results:20});
 
-			var albums = new Albums();
-
-			var mix = new MixCollection([],{
+			/*var mix = new MixCollection([],{
 				collections:[articles, videos, albums]
 			});
 
-			/*$.when(articles.pager(), videos.pager(), albums.pager())
+			$.when(articles.pager(), videos.pager(), albums.pager())
 			.fail(function(err){ console.error(err); })
 			.done(function (){
 				var listView = new ListView({
@@ -81,21 +81,9 @@ define([
 				});
 				var result = _.union(articles.models, videos.models, albums.models);
 				mix.reset(result);
-			});*/
-
-			$.when(articles.pager({
-				paginator_ui:{
-					perPage:10
-				}
-			}), videos.pager({
-				paginator_ui:{
-					perPage:10
-				}
-			}), albums.pager({
-				paginator_ui:{
-					perPage:10
-				}
-			}))
+			});
+*/
+			$.when(articles.pager(),videos.pager(),albums.pager())
 			.fail(function(err){ console.error(err); })
 			.done(function (){
 				var result = _.union(articles.models, videos.models, albums.models);

@@ -13,7 +13,8 @@ define([
 
 		model:Album,
 
-		initialize:function(){
+		initialize:function(options){
+			this.paginator_ui.nb_results = options.nb_results;
 			this.on('reset', this.onReset, this);
 			this.on('add', this.onAdd, this);
 		},
@@ -50,7 +51,8 @@ define([
 
 		server_api: {
 			'limit' : function () { return this.nb_results; },
-			'offset': function() { return this.currentPage * this.nb_results; }
+			//is first request ? --> dont take the 2 first albums (timeline + profile pics)
+			'offset': function() { return (this.currentPage * this.nb_results) === this.nb_results ? 2 : (this.currentPage * this.nb_results);  }
 		},
 
 		parse:function(response){

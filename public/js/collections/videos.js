@@ -12,6 +12,10 @@ define([
 
 		model:video,
 
+		initialize:function(options){
+			this.paginator_ui.nb_results = options.nb_results;
+		},
+
 		paginator_core: {
 			type: 'GET',
 			dataType: 'jsonp',
@@ -32,7 +36,8 @@ define([
 			'orderby': function() { return  this.orderby; },
 			'author' : function () { return this.author; },
 			'max-results' : function () { return this.nb_results; },
-			'start-index': function() { return this.currentPage * this.nb_results; }
+			//is first request ? --> start index is at 1
+			'start-index': function() { return (this.currentPage * this.nb_results) === this.nb_results ? 1 : (this.currentPage * this.nb_results); }
 		},
 
 		parse:function(response){

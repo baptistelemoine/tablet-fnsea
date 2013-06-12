@@ -43,25 +43,20 @@ define([
 
             var article = null;
 
-            switch(this.type(item)){
+            switch(item.get('item_type')){
                 case 'article' : {
-                    article = new ArticleItem({model:item});
+                    if(item.has('themaUrl'))
+                        article = new ArticleItem({model:item});
+                    if(item.has('contract'))
+                        article = new JobItem({model:item});
+                    if(item.has('pressType'))
+                        article = new PresseItem({model:item});
+                    if(item.has('beginning'))
+                        article = new EventItem({model:item});
                 }
                 break;
                 case 'video' : {
                     article = new VideoItem({model:item});
-                }
-                break;
-                case 'job' : {
-                    article = new JobItem({model:item});
-                }
-                break;
-                case 'evenement' : {
-                    article = new EventItem({model:item});
-                }
-                break;
-                case 'presse' : {
-                    article = new PresseItem({model:item});
                 }
                 break;
                 case 'album' : {
@@ -74,16 +69,6 @@ define([
             this.$container.append(article.render().el);
             this.cache.push(article.el);
 
-        },
-
-        type:function(model){
-
-            if (typeof(model.get('themaUrl')) !== 'undefined') return 'article';
-            if (typeof(model.get('contract')) !== 'undefined') return 'job';
-            if (typeof(model.get('pressType')) !== 'undefined') return 'presse';
-            if (typeof(model.get('beginning')) !== 'undefined') return 'evenement';
-            if (typeof(model.get('updated')) !== 'undefined') return 'video';
-            if (typeof(model.get('created_time')) !== 'undefined') return 'album';
         },
 
         layoutColumns:function(){

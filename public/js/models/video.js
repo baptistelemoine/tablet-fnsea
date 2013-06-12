@@ -1,3 +1,10 @@
-define(['underscore', 'backbone'], function (_, Backbone) {
-	return Backbone.Model.extend({});
+define([
+	'underscore',
+	'backbone'
+	], function (_, Backbone) {
+		return Backbone.Model.extend({
+			defaults:{
+				'item_type':'video'
+			}
+		});
 });

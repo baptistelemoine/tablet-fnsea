@@ -9,7 +9,7 @@ define([
     return Backbone.Paginator.clientPager.extend({
 
         initialize:function(models, options){
-			this.perPageParam = options.perPage;
+			this.paginator_ui.perPage = options.perPage;
         },
 
         comparator:function(model){
@@ -23,7 +23,7 @@ define([
         paginator_ui: {
             firstPage: 1,
             currentPage: 1,
-            perPage: function() { return this.perPageParam; },
+            perPage:6,
             totalPages: 10,
             pagesInRange: 4
         },

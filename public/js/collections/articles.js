@@ -13,6 +13,7 @@ define([
 
         initialize:function(param){
             this.pUrl = param.url;
+            this.paginator_ui.perPage = param.nb_results;
         },
 
         /*comparator:function(model){
