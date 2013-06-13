@@ -33,8 +33,13 @@ define([
         },
 
         onCheck:function(e){
-            console.log(e.currentTarget.value);
-            this.collection.setFieldFilter([{field:'item_type', type:'equalTo', value:'article'}]);
+
+            var filters = $(':checked', this.$el).map(function (index, value){
+                return $(value).val();
+            });
+            this.trigger('filter');
+            this.collection.setFieldFilter([{field:'item_type', type:'oneOf', value:_.flatten(filters)}]);
+
         }
 
     });

@@ -1,10 +1,11 @@
 <!-- Filter box -->
 <div class="header filter-menu">
   <div class="row-fluid">
-    <% _.each(this.list, function (value){ %>
-      <label class="checkbox inline span3" >
-        <input type="checkbox" checked value="<%= value.text.toLowerCase() %>" onclick="null" /> 
-        <div class="regular-checkbox dark <%= value.color %>"><span><%= value.text %></span></div>
+  	<% var self = this; %>
+    <% _.each(this.list, function (item){ %>
+      <label class="checkbox inline span<%= Math.floor(12/self.list.length) %>" >
+        <input type="checkbox" checked value="<%= item.value.toLowerCase() %>" onclick="null" /> 
+        <div class="regular-checkbox dark <%= item.color %>"><span><%= item.text %></span></div>
       </label>
     <% }) %>
   </div>

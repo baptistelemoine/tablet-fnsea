@@ -58,13 +58,14 @@ define([
 		},
 
 		getHome:function(hash){
+
 			var self = this;
 
 			var articles = new Articles({
 				url:self.apiURL,
-				nb_results:20
+				nb_results:50
 			});
-			var videos = new Videos({nb_results:20});
+			var videos = new Videos({nb_results:30});
 			var albums = new Albums({nb_results:20});
 
 			$.when(articles.pager(),videos.pager(),albums.pager())
@@ -75,7 +76,11 @@ define([
 				var listView = new ListView({
 					collection:mixed,
 					filterEnabled:true,
-					filterList:[{text:'Actu', color:'orange'}, {text:'Emploi', color:'blue'}, {text:'Presse', color:'purple'}, {text:'Médias', color:'pink'}]
+					filterList:[
+						{text:'Actualités', color:'orange', value:'article'},
+						{text:'Photos', color:'pink', value:'album'},
+						{text:'Vidéos', color:'blue', value:'video'}
+					]
 				});
 				mixed.fetch();
 				mixed.goTo(1);
