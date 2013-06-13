@@ -23,8 +23,6 @@ define([
         render:function(){
 
             this.model.set({'count':34, silent:true});
-            this.model.set({'time':moment(this.model.get('entry').publishedDate).fromNow()}, {silent:true});
-
             this.$el.append(this.template(this.model.toJSON()));
 
 			return this;

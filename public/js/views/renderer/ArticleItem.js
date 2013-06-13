@@ -22,11 +22,7 @@ define([
 
         render:function(){
 
-			var thema = ConfigManager.getThemaProp(_.last(this.model.get('themaUrl').split('/')));
-			this.model.set({'thema':thema.name}, {silent:true});
 			this.model.set({'count':34, silent:true});
-			this.model.set({'time':moment(this.model.get('entry').publishedDate).fromNow()}, {silent:true});
-
 			this.$el.append(this.template(this.model.toJSON()));
 
 			return this;

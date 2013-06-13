@@ -21,8 +21,6 @@ define([
         },
 
         render:function(){
-
-            this.model.set({'time':moment(this.model.get('created_time')).fromNow()}, {silent:true});
             this.$el.empty().append(this.template(this.model.toJSON()));
 			return this;
         }

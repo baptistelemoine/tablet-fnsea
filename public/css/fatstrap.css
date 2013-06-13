@@ -70,6 +70,18 @@ label {
   z-index: 1;
   -webkit-overflow-scrolling: touch;
 }
+#article-complete {
+  position: absolute;
+  top: 60px;
+  left: 40%;
+  right: 0;
+  bottom: 0px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(35, 35, 35, 0.98);
+  z-index: 2;
+  width: 60%;
+}
 #columns {
   -webkit-column-count: 2;
   -webkit-column-gap: 15px;
@@ -87,6 +99,10 @@ label {
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-count: 1;
+  }
+  #article-complete {
+    left: 10%;
+    width: 90%;
   }
 }
 #menu {
@@ -888,4 +904,41 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   border-width: 20px;
   left: 50%;
   margin-left: -20px;
+}
+#article-complete {
+  display: none;
+}
+#article-complete .article-container {
+  padding: 40px;
+}
+#article-complete p {
+  color: white;
+  text-align: justify;
+  font-weight: normal;
+}
+#article-complete img {
+  width: 100%;
+  margin-top: 15px;
+}
+#article-complete p.thema {
+  text-transform: uppercase;
+  color: #5a9aa8;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+#article-complete p.title {
+  font-size: 20px;
+  color: white;
+  line-height: 30px;
+}
+#article-complete div.summary p {
+  -moz-opacity: 0.4;
+  -webkit-opacity: 0.4;
+  opacity: 0.4;
+}
+#article-complete div.content p {
+  -moz-opacity: 0.8;
+  -webkit-opacity: 0.8;
+  opacity: 0.8;
+  line-height: 25px;
 }

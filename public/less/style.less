@@ -105,6 +105,21 @@ label{
   -webkit-overflow-scrolling: touch;
 }
 
+#article-complete{
+  position: absolute;
+  // padding: 20px;
+  top: 60px;
+  left: 40%;
+  right: 0;
+  // bottom: 60px;
+  bottom: 0px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(35, 35, 35, .98);
+  z-index: 2;
+  width: 60%;
+}
+
 #columns{
   -webkit-column-count: 2;
   -webkit-column-gap: 15px;
@@ -123,6 +138,10 @@ label{
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-count: 1;
+  }
+  #article-complete{
+    left: 10%;
+    width: 90%;
   }
 }
 

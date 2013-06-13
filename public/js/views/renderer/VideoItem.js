@@ -21,12 +21,6 @@ define([
 
         render:function(){
 
-            var duration = this.model.get('duration');
-            var minute = moment.duration(duration, 'seconds').minutes();
-            var second = moment.duration(duration, 'seconds').seconds();
-            second = second < 10 ? '0'+second : second;
-            this.model.set({'duration_formated':minute+':'+second}, {silent:true});            
-            this.model.set({'time':moment(this.model.get('uploaded')).fromNow()}, {silent:true});
             this.$el.append(this.template(this.model.toJSON()));
 
 			return this;
