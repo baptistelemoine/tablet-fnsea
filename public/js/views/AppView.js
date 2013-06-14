@@ -81,6 +81,9 @@ define([
 
 		getHome:function(hash){
 
+			if(this.articleView) this.articleView.close();
+			if(this.listView) return;
+
 			var self = this;
 
 			var articles = new Articles({
@@ -95,7 +98,7 @@ define([
 			.done(function (){
 				var result = _.union(articles.models, videos.models, albums.models);
 				var mixed = new Mixed(result, {perPage:6});
-				var listView = new ListView({
+				self.listView = new ListView({
 					collection:mixed,
 					filterEnabled:true,
 					filterList:[

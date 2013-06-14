@@ -19,17 +19,22 @@ define([
             _.bindAll(this, 'render');
 
             this.close();
+            this.open(500);
         },
 
         render:function(){
 
 			this.$el.show().empty().append(this.template(this.model.toJSON())).scrollTop(0);
-            this.$handler.trigger('click');
 			return this;
         },
 
         close:function(){
             if(this.$handler.is(':checked')) this.$handler.trigger('click');
+        },
+
+        open:function(delay){
+            var self = this;
+            if(!this.$handler.is(':checked')) setTimeout(function() { self.$handler.trigger('click'); }, delay);
         }
 
     });

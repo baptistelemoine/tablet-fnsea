@@ -2,7 +2,7 @@
 	<!-- <label for="handler-article"></label> -->
 	<p class="thema"><%= thema %></p>
 	<p class="title"><%= entry.title %></p>
-	<div><span class="icon-clock"></span><span><%= time %></span></div>
+	<div class="info"><span class="icon-clock"></span><span><%= time %></span></div>
 	<div class="summary"><%= entry.summary %></div>
 	<% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %>
 	<div class="content"><%= entry.content %></div>

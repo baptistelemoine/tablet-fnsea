@@ -761,6 +761,9 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   bottom: 8%;
   right: 5%;
 }
+.content-box.video-box .video-thumb .left-nav {
+  margin-bottom: -60px;
+}
 .content-box.video-box .content-box-footer {
   position: relative;
 }
@@ -929,6 +932,7 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 #article-complete img {
   width: 100%;
   margin-top: 15px;
+  margin-bottom: 20px;
 }
 #article-complete p.thema {
   text-transform: uppercase;
@@ -942,6 +946,7 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   line-height: 30px;
 }
 #article-complete div.summary p {
+  margin-top: 20px;
   -moz-opacity: 0.4;
   -webkit-opacity: 0.4;
   opacity: 0.4;
@@ -951,4 +956,12 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   -webkit-opacity: 0.8;
   opacity: 0.8;
   line-height: 25px;
+}
+#article-complete div.info {
+  color: white;
+  -moz-opacity: 0.2;
+  -webkit-opacity: 0.2;
+  opacity: 0.2;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
 }
