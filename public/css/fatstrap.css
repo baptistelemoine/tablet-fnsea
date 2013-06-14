@@ -644,7 +644,15 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 		left: -60px;*/
 
   margin-left: -60px;
+}
+.content-box .left-nav.one-btn {
+  margin-bottom: -60px;
+}
+.content-box .left-nav.two-btn {
   margin-bottom: -120px;
+}
+.content-box .left-nav.three-btn {
+  margin-bottom: -180px;
 }
 .content-box img {
   width: 100%;
