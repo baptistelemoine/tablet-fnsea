@@ -1,8 +1,9 @@
 <div class="article-container">
-  <p class="thema"><%= thema %></p>
-  <p class="title"><%= entry.title %></p>
-  <div><span class="icon-clock"></span><span><%= time %></span></div>
-  <div class="summary"><%= entry.summary %></div>
-  <% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %>
-  <div class="content"><%= entry.content %></div>
+	<!-- <label for="handler-article"></label> -->
+	<p class="thema"><%= thema %></p>
+	<p class="title"><%= entry.title %></p>
+	<div><span class="icon-clock"></span><span><%= time %></span></div>
+	<div class="summary"><%= entry.summary %></div>
+	<% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %>
+	<div class="content"><%= entry.content %></div>
 </div>

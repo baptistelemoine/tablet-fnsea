@@ -10,9 +10,12 @@ define([
   'collections/videos',
   'collections/mix',
   'collections/albums',
-  'collections/Mixed'
+  'collections/Mixed',
+  'views/ArticleView',
+  'models/article',
+  'text!templates/articleComplete.html'
 
-], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed){
+], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, ArticleTmpl){
 
 	return Backbone.View.extend({
 
@@ -21,7 +24,7 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getAllThema', 'getHome');
+			_.bindAll(this, 'layout', 'getAllThema', 'getHome', 'getArticle');
 
 			//generic layout
 			this.layout();
@@ -30,6 +33,7 @@ define([
 			this.appRouter.on('route:getAllThema', this.getAllThema);
 			this.appRouter.on('route:root', this.getHome);
 			this.appRouter.on('route:getAlbums', this.getAlbums);
+			this.appRouter.on('route:getArticle', this.getArticle);
 			Backbone.history.start({pushState:false});
 
 		},
@@ -42,14 +46,32 @@ define([
 			header.render();
 		},
 
-		getAllThema:function(hash){
+		getArticle:function(){
+
+			var self = this;
+			var article = new ArticleModel([],{
+				url:self.apiURL.concat(Backbone.history.fragment)
+			});
+			this.articleView = new ArticleView({model:article}, {itemRenderer:ArticleTmpl});
+			article.fetch({
+				success:function(data){
+					self.articleView.render();
+				}
+			});
+		},
+
+		getAllThema:function(){
+
+			if(this.articleView) this.articleView.close();
+			if(this.listView) return;
+
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
-			var listView = new ListView({
+			this.listView = new ListView({
 				collection:new Articles({
 					url:currentURL
 				})
 			});
-			listView.collection.pager({
+			this.listView.collection.pager({
 				reset:true,
 				error:function(err){
 					console.error(err);
@@ -90,7 +112,7 @@ define([
 		getAlbums:function(){
 
 			var listView = new ListView({
-				collection:new Albums()
+				collection:new Albums({nb_results:5})
 			});
 
 			listView.collection.pager({

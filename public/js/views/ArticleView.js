@@ -7,9 +7,9 @@ define([
 
     return Backbone.View.extend({
 
-		tagName:'div',
+        el:'#article-complete',
 
-		className:'content-box',
+        $handler:$('#handler-article'),
 
         initialize:function(model, options) {
 
@@ -17,14 +17,19 @@ define([
             this.template = _.template(this.itemRenderer);
 
             _.bindAll(this, 'render');
+
+            this.close();
         },
 
         render:function(){
 
-			this.model.set({'count':34, silent:true});
-			this.$el.append(this.template(this.model.toJSON()));
-
+			this.$el.show().empty().append(this.template(this.model.toJSON())).scrollTop(0);
+            this.$handler.trigger('click');
 			return this;
+        },
+
+        close:function(){
+            if(this.$handler.is(':checked')) this.$handler.trigger('click');
         }
 
     });

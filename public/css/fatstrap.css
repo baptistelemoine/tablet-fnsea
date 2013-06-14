@@ -54,6 +54,12 @@ html {
 .handler#handler-combo:checked ~ #wrapper ul.combo-box {
   visibility: visible;
 }
+.handler#handler-article:checked ~ #wrapper #article-complete {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -webkit-transform: translate3D(0, 0, 0);
+  -moz-transform: translate3D(0, 0, 0);
+}
 label {
   margin: 0;
 }
@@ -73,7 +79,6 @@ label {
 #article-complete {
   position: absolute;
   top: 60px;
-  left: 40%;
   right: 0;
   bottom: 0px;
   overflow-y: scroll;
@@ -81,6 +86,10 @@ label {
   background: rgba(35, 35, 35, 0.98);
   z-index: 2;
   width: 60%;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  -webkit-transform: translate3D(100%, 0, 0);
+  -moz-transform: translate3D(100%, 0, 0);
 }
 #columns {
   -webkit-column-count: 2;
@@ -101,7 +110,6 @@ label {
     column-count: 1;
   }
   #article-complete {
-    left: 10%;
     width: 90%;
   }
 }
@@ -621,7 +629,6 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   width: 100%;
   text-align: left;
   margin: 15px 0 15px 60px;
-  position: relative;
   background-color: #fff;
   display: inline-block;
   -webkit-transition: all .2s ease;
@@ -633,8 +640,11 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   text-decoration: none;
 }
 .content-box .left-nav {
-  position: absolute;
-  left: -60px;
+  /*position: absolute;
+		left: -60px;*/
+
+  margin-left: -60px;
+  margin-bottom: -120px;
 }
 .content-box img {
   width: 100%;

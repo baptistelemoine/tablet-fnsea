@@ -12,6 +12,8 @@ define([
 		},
 
 		parse:function(response, options){
+
+			if(_.isArray(response)) response = _.first(response);
 			//add some properties
 			if(response.themaUrl){
 				var thema = ConfigManager.getThemaProp(_.last(response.themaUrl.split('/')));

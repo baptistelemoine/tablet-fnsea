@@ -3,15 +3,16 @@ define([
     'underscore',
     'backbone',
     'views/renderer/ArticleItem',
+    'text!templates/articleItem.html',
+    'text!templates/jobItem.html',
+    'text!templates/eventItem.html',
+    'text!templates/presseItem.html',
     'views/renderer/VideoItem',
-    'views/renderer/JobItem',
-    'views/renderer/PresseItem',
-    'views/renderer/EventItem',
     'views/renderer/AlbumItem',
     'enquire',
     'views/comps/filter'
 
-    ], function ($, _, Backbone, ArticleItem, VideoItem, JobItem, PresseItem, EventItem, AlbumItem, enquire, Filter) {
+    ], function ($, _, Backbone, ArticleItem, ArticleTmpl, JobTmpl, EventTmpl, PresseTmpl, VideoItem, AlbumItem, enquire, Filter) {
 
     return Backbone.View.extend({
 
@@ -48,13 +49,13 @@ define([
             switch(item.get('item_type')){
                 case 'article' : {
                     if(item.has('themaUrl'))
-                        article = new ArticleItem({model:item});
+                        article = new ArticleItem({model:item}, {itemRenderer:ArticleTmpl});
                     if(item.has('contract'))
-                        article = new JobItem({model:item});
+                        article = new ArticleItem({model:item}, {itemRenderer:JobTmpl});
                     if(item.has('pressType'))
-                        article = new PresseItem({model:item});
+                        article = new ArticleItem({model:item}, {itemRenderer:PresseTmpl});
                     if(item.has('beginning'))
-                        article = new EventItem({model:item});
+                        article = new ArticleItem({model:item}, {itemRenderer:EventTmpl});
                 }
                 break;
                 case 'video' : {
@@ -88,7 +89,7 @@ define([
 
             this.collection.each(this.render);
             this.isLoading = false;
-
+            
             var self = this;
             enquire.unregister();
             enquire.register('screen and (max-width:800px)', {
