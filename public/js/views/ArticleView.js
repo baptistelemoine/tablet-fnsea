@@ -18,8 +18,9 @@ define([
 
             _.bindAll(this, 'render');
 
-            this.close();
-            this.open(500);
+            // this.close();
+            // this.open(500);
+            this.open();
         },
 
         render:function(){
@@ -32,9 +33,9 @@ define([
             if(this.$handler.is(':checked')) this.$handler.trigger('click');
         },
 
-        open:function(delay){
+        open:function(){
             var self = this;
-            if(!this.$handler.is(':checked')) setTimeout(function() { self.$handler.trigger('click'); }, delay);
+            if(!this.$handler.is(':checked')) this.$handler.trigger('click');
         }
 
     });

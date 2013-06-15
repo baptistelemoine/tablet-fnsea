@@ -24,9 +24,10 @@ html {
   display: none;
 }
 .handler#handler-menu:checked ~ #menu {
-  opacity: 1;
-  -webkit-transition: opacity 0s 0s;
-  -moz-transition: opacity 0s 0s;
+  /*opacity: 1;
+      -webkit-transition: opacity 0s 0s;
+      -moz-transition: opacity 0s 0s;*/
+
 }
 .handler#handler-menu:checked ~ #wrapper {
   -webkit-transform: translate3D(300px, 0, 0);
@@ -122,8 +123,9 @@ label {
   z-index: 1;
   background: #232323;
   overflow: auto;
-  opacity: 0;
-  -webkit-transition: opacity 0s .5s;
+  /*opacity: 0;
+  -webkit-transition: opacity 0s .5s;*/
+
   -webkit-overflow-scrolling: touch;
 }
 hr {
@@ -395,6 +397,7 @@ input[type="checkbox"] {
 input[type="checkbox"] + div.regular-checkbox {
   width: 20px;
   height: 20px;
+  pointer-events: none;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0);
 }

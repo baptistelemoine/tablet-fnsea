@@ -51,8 +51,8 @@ define([
 
 		server_api: {
 			'limit' : function () { return this.nb_results; },
-			//is first request ? --> dont take the 2 first albums (timeline + profile pics)
-			'offset': function() { return (this.currentPage * this.nb_results) === this.nb_results ? 2 : (this.currentPage * this.nb_results);  }
+			//is first request ? --> dont take the 3 first albums (timeline + profile pics, cover photos)
+			'offset': function() { return (this.currentPage * this.nb_results) === this.nb_results ? 3 : (this.currentPage * this.nb_results - 2);  }
 		},
 
 		parse:function(response){

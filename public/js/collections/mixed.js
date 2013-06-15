@@ -13,7 +13,13 @@ define([
         },
 
         comparator:function(model){
-			return - (new Date(model.get('updated')).getTime() || new Date(model.get('created_time')).getTime() || new Date(model.get('entry').publishedDate).getTime());
+            //convert facebook datetime to utc, weird, only with safari
+            switch(model.get('item_type')){
+                case 'article' : return - new Date(model.get('entry').publishedDate).getTime();
+                case 'album' : return - new Date(moment.utc(model.get('created_time'))).getTime();
+                case 'video' : return - new Date(model.get('updated')).getTime();
+            }
+            return new Date();
         },
 
         paginator_core:{
