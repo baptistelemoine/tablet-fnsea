@@ -62,8 +62,8 @@ define([
 
 		getAllThema:function(){
 
-			if(this.articleView) this.articleView.close();
-			if(this.listView) return;
+			/*if(this.articleView) this.articleView.close();
+			if(this.listView) return;*/
 
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
 			this.listView = new ListView({

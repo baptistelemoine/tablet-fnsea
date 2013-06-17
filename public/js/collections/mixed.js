@@ -13,6 +13,7 @@ define([
         },
 
         comparator:function(model){
+            //always sort collection by date desc
             //convert facebook datetime to utc, weird, only with safari
             switch(model.get('item_type')){
                 case 'article' : return - new Date(model.get('entry').publishedDate).getTime();

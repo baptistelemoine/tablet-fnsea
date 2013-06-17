@@ -12,14 +12,8 @@ define([
         $handler:$('#handler-article'),
 
         initialize:function(model, options) {
-
-            this.itemRenderer = options.itemRenderer;
-            this.template = _.template(this.itemRenderer);
-
+            this.template = _.template(options.itemRenderer);
             _.bindAll(this, 'render');
-
-            // this.close();
-            // this.open(500);
             this.open();
         },
 

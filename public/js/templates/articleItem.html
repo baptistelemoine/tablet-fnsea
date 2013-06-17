@@ -6,7 +6,7 @@
     <span>Dossier : <%= thema %></span><span class="badge"><%= count %></span>
   </div>
   <div class="title-container">
-    <p><%= entry.title %></p>
+    <p><a href="#<%= entry.niceUrl %>"><%= entry.title %></a></p>
   </div>
   <% if(entry.image) { %><a href="#<%= entry.niceUrl %>"><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %></a>
   <div class="summary-container">

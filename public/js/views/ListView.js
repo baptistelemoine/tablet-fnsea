@@ -74,6 +74,9 @@ define([
 
         },
 
+        //important note ! Use detach instead of empty
+        //to prevent item rendering events lost
+
         layoutColumns:function(){
             var self = this;
 
@@ -81,7 +84,8 @@ define([
                 var sorted = _.sortBy(this.cache, function (value){
                     return _.indexOf(self.cache, value) % 2;
                 });
-                this.$container.empty().append(sorted);
+                this.$container.children().detach();
+                this.$container.append(sorted);
             }
         },
 
@@ -89,7 +93,7 @@ define([
 
             this.collection.each(this.render);
             this.isLoading = false;
-            
+
             var self = this;
             enquire.unregister();
             enquire.register('screen and (max-width:800px)', {
@@ -97,7 +101,8 @@ define([
                     self.layoutColumns();
                 },
                 match:function(){
-                    self.$container.empty().append(self.cache);
+                    self.$container.children().detach();
+                    self.$container.append(self.cache);
                 },
                 unmatch:function(){
                     self.layoutColumns();
