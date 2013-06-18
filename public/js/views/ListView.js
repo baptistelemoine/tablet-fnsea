@@ -17,25 +17,25 @@ define([
     return Backbone.View.extend({
 
         el: '#content',
-        $container: $('#columns', this.el),
+        $container: $('#columns'),
         events:{
             'scroll' : 'checkScroll'
         },
         $preloader: $('div.spinner-container'),
         isLoading: false,
-        cache: [],
 
         filterEnabled:false,
 
         initialize:function(options) {
 
-            _.bindAll(this, 'render', 'addAll');
-            this.collection.on('reset', this.addAll);
+            _.bindAll(this, 'render', 'addAll', 'checkScroll');
 
+            this.cache = [];
+
+            this.collection.on('reset', this.addAll);
             this.filterEnabled = options.filterEnabled;
 
             var self = this;
-
             if(this.filterEnabled) new Filter({
                 collection:this.collection,
                 list:options.filterList
@@ -111,19 +111,31 @@ define([
         },
 
         checkScroll:function(e){
+            if(this.el.scrollTop === 0) return;
             var triggerPoint = 5;
             var self = this;
             //infinite scrolling
             if(!this.isLoading && this.el.scrollTop + this.el.clientHeight + triggerPoint > this.el.scrollHeight){
-                this.$preloader.show();
+                // this.$preloader.show();
                 this.isLoading = true;
+                // console.log('request next page')
                 this.collection.requestNextPage({
                     success:function(data){
                         self.addAll();
-                        self.$preloader.hide();
+                        // self.$preloader.hide();
                     }
                 });
             }
+        },
+
+        dispose:function(){
+
+            this.$container.empty();
+            this.undelegateEvents();
+            // console.log($._data($('#content')[0], "events"));
+            this.collection.off('reset');
+            this.collection = null;
+
         }
 
     });

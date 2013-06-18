@@ -29,7 +29,6 @@ define([
         },
 
         onClick:function(e){
-            e.preventDefault();
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');

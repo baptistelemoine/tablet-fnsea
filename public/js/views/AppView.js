@@ -24,13 +24,13 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getAllThema', 'getHome', 'getArticle');
+			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle');
 
 			//generic layout
 			this.layout();
 
 			this.appRouter = new Router();
-			this.appRouter.on('route:getAllThema', this.getAllThema);
+			this.appRouter.on('route:getArticleList', this.getArticleList);
 			this.appRouter.on('route:root', this.getHome);
 			this.appRouter.on('route:getAlbums', this.getAlbums);
 			this.appRouter.on('route:getArticle', this.getArticle);
@@ -60,29 +60,45 @@ define([
 			});
 		},
 
-		getAllThema:function(){
-
-			/*if(this.articleView) this.articleView.close();
-			if(this.listView) return;*/
+		getArticleList:function(){
 
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
-			this.listView = new ListView({
+
+			if(this.articleView) this.articleView.close();
+
+			if(this.currentView) {
+				if(this.currentView.collection.pUrl === currentURL) return;
+				this.currentView.dispose();
+				this.currentView = null;
+			}
+
+			var listView = new ListView({
 				collection:new Articles({
-					url:currentURL
+					url:currentURL,
+					nb_results:6
 				})
 			});
-			this.listView.collection.pager({
+			listView.collection.pager({
 				reset:true,
 				error:function(err){
 					console.error(err);
 				}
 			});
+			this.currentView = listView;
+			// console.log(this.listView.collection.info())
 		},
 
 		getHome:function(hash){
-
+			
+			var currentURL = this.apiURL.concat(Backbone.history.fragment);
+			
 			if(this.articleView) this.articleView.close();
-			if(this.listView) return;
+			
+			if(this.currentView) {
+				if(currentURL === this.apiURL) return;
+				this.currentView.dispose();
+				this.currentView = null;
+			}
 
 			var self = this;
 
@@ -98,7 +114,7 @@ define([
 			.done(function (){
 				var result = _.union(articles.models, videos.models, albums.models);
 				var mixed = new Mixed(result, {perPage:6});
-				self.listView = new ListView({
+				var listView = new ListView({
 					collection:mixed,
 					filterEnabled:true,
 					filterList:[
@@ -109,6 +125,7 @@ define([
 				});
 				mixed.fetch();
 				mixed.goTo(1);
+				self.currentView = listView;
 			});
 		},
 
