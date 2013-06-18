@@ -24,7 +24,7 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle');
+			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias');
 
 			//generic layout
 			this.layout();
@@ -32,7 +32,7 @@ define([
 			this.appRouter = new Router();
 			this.appRouter.on('route:getArticleList', this.getArticleList);
 			this.appRouter.on('route:root', this.getHome);
-			this.appRouter.on('route:getAlbums', this.getAlbums);
+			this.appRouter.on('route:getMedias', this.getMedias);
 			this.appRouter.on('route:getArticle', this.getArticle);
 			Backbone.history.start({pushState:false});
 
@@ -67,7 +67,9 @@ define([
 			if(this.articleView) this.articleView.close();
 
 			if(this.currentView) {
+				// console.log(this.currentView.collection.pUrl)
 				if(this.currentView.collection.pUrl === currentURL) return;
+				if(this.currentView.collection.url() === currentURL) return;
 				this.currentView.dispose();
 				this.currentView = null;
 			}
@@ -76,7 +78,8 @@ define([
 				collection:new Articles({
 					url:currentURL,
 					nb_results:6
-				})
+				}),
+				filterEnabled:false
 			});
 			listView.collection.pager({
 				reset:true,
@@ -89,11 +92,11 @@ define([
 		},
 
 		getHome:function(hash){
-			
+
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
-			
+
 			if(this.articleView) this.articleView.close();
-			
+
 			if(this.currentView) {
 				if(currentURL === this.apiURL) return;
 				this.currentView.dispose();
@@ -129,11 +132,24 @@ define([
 			});
 		},
 
-		getAlbums:function(){
+		getMedias:function(type){
 
-			var listView = new ListView({
-				collection:new Albums({nb_results:5})
-			});
+			if(this.articleView) this.articleView.close();
+
+			if(this.currentView) {
+				this.currentView.dispose();
+				this.currentView = null;
+			}
+
+			var listView;
+			switch(type){
+				case 'albums' :
+					listView = new ListView({collection:new Albums({nb_results:5})});
+				break;
+				case 'videos' :
+					listView = new ListView({collection:new Videos({nb_results:5})});
+				break;
+			}
 
 			listView.collection.pager({
 				reset:true,
@@ -141,6 +157,7 @@ define([
 					console.error(err);
 				}
 			});
+			this.currentView = listView;
 		}
 
 	});

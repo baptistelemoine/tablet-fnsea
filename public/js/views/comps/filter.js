@@ -21,7 +21,7 @@ define([
           _.bindAll(this, 'render', 'onCheck');
 
           this.list = options.list;
-          this.render();
+          // this.render();
         },
 
         render:function(){

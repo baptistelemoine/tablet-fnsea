@@ -36,10 +36,14 @@ define([
             this.filterEnabled = options.filterEnabled;
 
             var self = this;
-            if(this.filterEnabled) new Filter({
+            var filter = new Filter({
                 collection:this.collection,
                 list:options.filterList
-            }).on('filter', function (e){ self.cache = []; });
+            });
+            if(this.filterEnabled){
+                filter.render();
+                filter.on('filter', function (e){ self.cache = []; });
+            }            
         },
 
         render:function(item){
