@@ -12,8 +12,7 @@ define([
 		className:'content-box',
 
         events:{
-            'click':'onClick',
-            'mouseover':'onHover'
+            'click a':'onClick'
         },
 
         initialize:function(model, options) {
@@ -29,15 +28,12 @@ define([
 			return this;
         },
 
-        onHover:function(e){
-            e.preventDefault();
-            console.log('hover');
-        },
-
         onClick:function(e){
             e.preventDefault();
-            console.log('clic')
-            // this.$el.addClass('active');
+            var self = this;
+            this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
+                self.$el.removeClass('active');
+            });
         }
 
     });

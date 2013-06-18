@@ -10,7 +10,7 @@
   </div>
   <% if(entry.image) { %><a href="#<%= entry.niceUrl %>"><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %></a>
   <div class="summary-container">
-    <%= entry.summary.substring(0, 250) %> [...]</div>
+    <a href="#<%= entry.niceUrl %>"><%= entry.summary.substring(0, 250) %> [...]</a></div>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>
