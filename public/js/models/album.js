@@ -7,8 +7,9 @@ define([
     return Backbone.Model.extend({
 
 		defaults:{
-			'description' : 'no desc',
-			'item_type':'album'
+			'description' : '',
+			'item_type':'album',
+			'likes':{ data:[] }
 		},
 
 		initialize:function(){

@@ -35,7 +35,7 @@ define([
                 break;
                 case 'album' :
                     this.template = _.template(AlbumTmpl);
-                    console.log(this.model)
+                    // console.log(this.model)
                 break;
             }
 

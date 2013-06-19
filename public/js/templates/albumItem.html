@@ -23,7 +23,7 @@
     </div>
   </a>
   <div class="summary-container">
-    <p><a href="#/medias/albums/<%= id %>"><%= description.substring(0, 200) %> [...]</a></p>
+    <p><a href="#/medias/albums/<%= id %>"><% if(description.length > 200) { %><%= description.substring(0, 200) %> [...]<% } else { %><%= description %><% } %></a></p>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>
