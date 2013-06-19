@@ -1,0 +1,9 @@
+<div class="article-container">
+	<p class="thema">Les offres d'emploi du réseau</p>
+	<p class="title"><%= entry.title %></p>
+	<div class="info"><span class="icon-clock"></span><span><%= time %></span></div>
+	<div class="summary"><%= entry.summary %></div>
+	<div class="content"><%= entry.content %></div>
+	<br />
+	<% if(entry.isPdf) { %><span class="button generic bg-green"><a href="http://www.fnsea.fr<%= pdfUrl%>" target="_blank">Ouvrir le pdf</a></span><% } %>
+</div>

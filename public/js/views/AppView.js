@@ -2,6 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'utils/ConfigManager',
   'views/comps/menu',
   'views/comps/header',
   'router',
@@ -13,14 +14,15 @@ define([
   'collections/Mixed',
   'views/ArticleView',
   'models/article',
-  'text!templates/articleComplete.html'
+  'models/video'
 
-], function ($, _, Backbone, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, ArticleTmpl){
+], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel){
 
 	return Backbone.View.extend({
 
 		apiURL : 'http://apifnsea.herokuapp.com/',
-		// apiURL : 'http://localhost:4000/',
+
+		currentListUrl:'',
 
 		initialize:function(){
 
@@ -46,14 +48,39 @@ define([
 			header.render();
 		},
 
-		getArticle:function(){
+		launchRequest:function(){
+
+			var currentURL = this.apiURL.concat(Backbone.history.fragment);
+
+			if(this.articleView) this.articleView.close();
+
+			if(this.currentView) {
+				if(this.currentListUrl === currentURL) return false;
+				this.currentView.dispose();
+				this.currentView = null;
+			}
+
+			this.currentListUrl = currentURL;
+
+			return true;
+		},
+
+		getArticle:function(hash, path){
 
 			var self = this;
-			var article = new ArticleModel([],{
-				url:self.apiURL.concat(Backbone.history.fragment)
-			});
-			this.articleView = new ArticleView({model:article}, {itemRenderer:ArticleTmpl});
-			article.fetch({
+			var item;
+			if(hash === 'videos') {
+				item = new VideoModel([], {
+					url:ConfigManager.gdataSingleVideoUrl(path)
+				});
+			}
+			else {
+				item = new ArticleModel([],{
+					url:self.apiURL.concat(Backbone.history.fragment)
+				});
+			}
+			this.articleView = new ArticleView({model:item});
+			item.fetch({
 				success:function(data){
 					self.articleView.render();
 				}
@@ -62,17 +89,9 @@ define([
 
 		getArticleList:function(){
 
+			if(!this.launchRequest()) return;
+
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
-
-			if(this.articleView) this.articleView.close();
-
-			if(this.currentView) {
-				// console.log(this.currentView.collection.pUrl)
-				if(this.currentView.collection.pUrl === currentURL) return;
-				if(this.currentView.collection.url() === currentURL) return;
-				this.currentView.dispose();
-				this.currentView = null;
-			}
 
 			var listView = new ListView({
 				collection:new Articles({
@@ -88,20 +107,11 @@ define([
 				}
 			});
 			this.currentView = listView;
-			// console.log(this.listView.collection.info())
 		},
 
 		getHome:function(hash){
 
-			var currentURL = this.apiURL.concat(Backbone.history.fragment);
-
-			if(this.articleView) this.articleView.close();
-
-			if(this.currentView) {
-				if(currentURL === this.apiURL) return;
-				this.currentView.dispose();
-				this.currentView = null;
-			}
+			if(!this.launchRequest()) return;
 
 			var self = this;
 
@@ -134,12 +144,7 @@ define([
 
 		getMedias:function(type){
 
-			if(this.articleView) this.articleView.close();
-
-			if(this.currentView) {
-				this.currentView.dispose();
-				this.currentView = null;
-			}
+			if(!this.launchRequest()) return;
 
 			var listView;
 			switch(type){

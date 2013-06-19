@@ -23,6 +23,7 @@ define([
           'les-evenements'                                                   : 'getEvenements',
           'les-evenements/*path'                                             : 'getEvenement',
           'medias/:type'                                                     : 'getMedias',
+          'medias/:type/*path'                                               : 'getArticle',
           ':albumID/photos'                                                  : 'getPhotos',
           'videos'                                                           : 'getVideos',
           'contact'                                                          : 'getContact',

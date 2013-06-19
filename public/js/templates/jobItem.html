@@ -6,10 +6,10 @@
     <span>Les offres d'emploi du réseau</span><span class="badge"><%= count %></span>
   </div>
   <div class="title-container">
-    <p><%= entry.title %></p>
+    <p><a href="#<%= entry.niceUrl %>"><%= entry.title %></a></p>
   </div>
   <div class="summary-container">
-    <p><%= entry.summary %></p>
+    <p><a href="#<%= entry.niceUrl %>"><%= entry.summary %></a></p>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>

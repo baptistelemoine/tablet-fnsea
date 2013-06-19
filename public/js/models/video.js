@@ -22,6 +22,9 @@ define([
 				if(response.uploaded){
 					response.time = moment(response.uploaded).fromNow();
 				}
+				else if(response.data.uploaded){
+					response.data.time = moment(response.data.uploaded).fromNow();
+				}
 				return response;
 			}
 		});

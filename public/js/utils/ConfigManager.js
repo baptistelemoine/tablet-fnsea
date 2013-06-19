@@ -33,6 +33,10 @@ define(function(){
 			return '';
 		},
 
+		gdataSingleVideoUrl:function(id){
+			return 'http://gdata.youtube.com/feeds/api/videos/'+id+'?alt=jsonc&v=2';
+		},
+
 		FACEBOOK_USER:'lafnsea',
 		GRAPH_URL:'https://graph.facebook.com/',
 		GDATA_URL:'http://gdata.youtube.com/feeds/api/videos?alt=jsonc&v=2',

@@ -1,0 +1,17 @@
+<div class="article-container">
+	<p class="thema">Videos, from youtube</p>
+	<p class="title"><%= data.title %></p>
+	<div class="info">
+		<span class="icon-clock"></span><span><%= data.time %></span>
+		<span class="icon-eye-1"></span><span>vue <%= data.viewCount %> fois</span>
+	</div>
+	<div class="summary"><%= data.description %></div>
+	<figure class="video-wrapper">  		
+		<div class="video-container">
+			<iframe src="http://www.youtube.com/embed/<%= data.id %>?showinfo=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="">
+			</iframe>
+		</div>
+	</figure>
+	<br />
+	<span class="button generic bg-green"><a href="<%= data.player.default %>" target="_blank">Voir sur youtube</a></span>
+</div>

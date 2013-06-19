@@ -3,12 +3,12 @@
   </div>        
   <div class="video-thumb">
     <!-- <img src="images/test2.png" /> -->
-    <div class="inner"><img src="<%= thumbnail.hqDefault %>" /></div>
+    <div class="inner"><a href="#/medias/videos/<%= id %>"><img src="<%= thumbnail.hqDefault %>" /></a></div>
     <div class="button rectangle bg-green"><span class="icon-play" /></div>
     <div class="video-length"><%= duration_formated %></div>
   </div>
   <div class="title-container">
-    <p><%= title %></p>
+    <p><a href="#/medias/videos/<%= id %>"><%= title %></p>
   </div>
   <div class="summary-container">
     <p><%= description %></p>
