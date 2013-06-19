@@ -101,9 +101,8 @@ figure { margin:0; }
     
     & ~ #wrapper {
       #article-complete {
-        -webkit-transition: -webkit-transform .5s ease-in-out;
         -webkit-transition-delay:.5s;
-        -moz-transition: -moz-transform .5s ease-in-out;
+        -moz-transition-delay:.5s;
         -webkit-transform: translate3D(0,0,0);
         -moz-transform: translate3D(0,0,0);
       }
@@ -131,6 +130,7 @@ label{
 }
 
 #article-complete{
+  display: none;
   position: absolute;
   // padding: 20px;
   top: 60px;
@@ -143,10 +143,11 @@ label{
   z-index: 2;
   width: 60%;
   // left: 100%;
-  -webkit-transition: -webkit-transform .5s;
-  -moz-transition: -moz-transform .5s;
   -webkit-transform: translate3D(100%,0,0);
   -moz-transform: translate3D(100%,0,0);
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  -moz-transition: -moz-transform .5s ease-in-out;
+
 
 }
 
@@ -255,6 +256,10 @@ ul, li { list-style: none; margin:0;}
 
 .pink{
   color: #8c5d79;
+}
+
+.red{
+  color: #c0392b !important;
 }
 
 .blue{

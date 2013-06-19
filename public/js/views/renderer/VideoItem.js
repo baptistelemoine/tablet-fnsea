@@ -15,6 +15,10 @@ define([
 
 		template:_.template(VideoTmpl),
 
+        events:{
+            'click a':'onClick'
+        },
+
         initialize:function(options) {
           _.bindAll(this, 'render');
         },
@@ -22,6 +26,13 @@ define([
         render:function(){
             this.$el.append(this.template(this.model.toJSON()));
 			return this;
+        },
+
+        onClick:function(e){
+            var self = this;
+            this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
+                self.$el.removeClass('active');
+            });
         }
     });
 

@@ -10,6 +10,12 @@ define([
 
 		el:'#menu',
 
+        $handler:$('#handler-menu'),
+
+        events:{
+            'click a':'onClick'
+        },
+
 		template:_.template(MenuTmpl),
 
         initialize:function(options) {
@@ -21,6 +27,10 @@ define([
         render:function(){
 			this.$el.append(this.template());
 			return this;
+        },
+
+        onClick:function(e){
+            if(this.$handler.is(':checked')) this.$handler.trigger('click');
         }
 
     });

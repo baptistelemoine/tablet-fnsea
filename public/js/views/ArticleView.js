@@ -5,9 +5,10 @@ define([
     'text!templates/articleComplete.html',
     'text!templates/jobComplete.html',
     'text!templates/presseComplete.html',
-    'text!templates/videoComplete.html'
+    'text!templates/videoComplete.html',
+    'text!templates/albumComplete.html'
 
-    ], function ($, _, Backbone, ArticleTmpl, JobTmpl, PresseTmpl, VideoTmpl) {
+    ], function ($, _, Backbone, ArticleTmpl, JobTmpl, PresseTmpl, VideoTmpl, AlbumTmpl) {
 
     return Backbone.View.extend({
 
@@ -32,19 +33,27 @@ define([
                 case 'video' :
                     this.template = _.template(VideoTmpl);
                 break;
+                case 'album' :
+                    this.template = _.template(AlbumTmpl);
+                    console.log(this.model)
+                break;
             }
 
-			this.$el.show().empty().append(this.template(this.model.toJSON())).scrollTop(0);
+			this.$el.empty().append(this.template(this.model.toJSON())).scrollTop(0);
 			return this;
         },
 
         close:function(){
-            if(this.$handler.is(':checked')) this.$handler.trigger('click');
+            if(this.isOpen()) this.$handler.trigger('click');
             this.$el.empty();
         },
 
         open:function(){
-            if(!this.$handler.is(':checked')) this.$handler.trigger('click');
+            if(!this.isOpen()) this.$handler.trigger('click');
+        },
+
+        isOpen:function(){
+            return this.$handler.is(':checked');
         }
 
     });

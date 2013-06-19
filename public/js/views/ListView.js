@@ -43,7 +43,7 @@ define([
             if(this.filterEnabled){
                 filter.render();
                 filter.on('filter', function (e){ self.cache = []; });
-            }            
+            }
         },
 
         render:function(item){

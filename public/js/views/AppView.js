@@ -14,9 +14,10 @@ define([
   'collections/Mixed',
   'views/ArticleView',
   'models/article',
-  'models/video'
+  'models/video',
+  'models/album'
 
-], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel){
+], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel){
 
 	return Backbone.View.extend({
 
@@ -46,6 +47,19 @@ define([
 
 			var header = new Header();
 			header.render();
+
+			$('#article-complete').show();
+
+			//if article open && nowhere clicked on stage :
+			//navigate to current list opened
+			var self = this;
+			$('#content').on('click', function (e) {
+				var target = _.first($(e.target)).id;
+				if((target === 'content'|| target === 'columns') && self.articleView){
+					if(self.articleView.isOpen())
+						self.appRouter.navigate(self.currentListUrl.replace(self.apiURL, ''), {trigger:true, replace:true});
+				}
+			});
 		},
 
 		launchRequest:function(){
@@ -72,6 +86,11 @@ define([
 			if(hash === 'videos') {
 				item = new VideoModel([], {
 					url:ConfigManager.gdataSingleVideoUrl(path)
+				});
+			}
+			else if(hash === 'albums'){
+				item = new AlbumModel([], {
+					url:ConfigManager.GRAPH_URL.concat(path)
 				});
 			}
 			else {

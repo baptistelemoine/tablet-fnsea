@@ -3,18 +3,20 @@
   </div>        
   <div class="video-thumb">
     <!-- <img src="images/test2.png" /> -->
-    <div class="inner"><a href="#/medias/videos/<%= id %>"><img src="<%= thumbnail.hqDefault %>" /></a></div>
-    <div class="button rectangle bg-green"><span class="icon-play" /></div>
-    <div class="video-length"><%= duration_formated %></div>
+    <a href="#/medias/videos/<%= id %>">
+      <div class="inner"><img src="<%= thumbnail.hqDefault %>" /></div>
+      <div class="button rectangle bg-green"><span class="icon-play" /></div>
+      <div class="video-length"><%= duration_formated %></div>
+    </a>
   </div>
   <div class="title-container">
-    <p><a href="#/medias/videos/<%= id %>"><%= title %></p>
+    <p><a href="#/medias/videos/<%= id %>"><%= title %></a></p>
   </div>
   <div class="summary-container">
-    <p><%= description %></p>
+    <a href="#/medias/videos/<%= id %>"><p><%= description %></p></a>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>
     <span class="icon-eye-1"></span><span>vue <%= viewCount %> fois</span>
-    <div class="button bg-green"><p>Vidéos<!-- <span class="badge">43</span> --></p></div>
+    <div class="button bg-green"><p><a href="#/medias/videos">Vidéos</a><!-- <span class="badge">43</span> --></p></div>
   </div>

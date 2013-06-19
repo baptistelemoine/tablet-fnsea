@@ -2,6 +2,14 @@
 
 .button {
 
+	a{
+		text-decoration: none;
+		color: white;
+		&:active{
+			-webkit-animation: scaleAnim .3s;
+		}
+	}
+
 	&.square{
 		width: 60px;
 		height: 60px;
@@ -28,16 +36,11 @@
 			font-size: 18px;
 			color: #fff;
 			margin: 12px 0 0 20px;
-		}
+		}		
 	}
-	&.generic, &.generic a {
+	&.generic {
 		color: @light;
 		padding: 10px;
-		text-decoration: none;
-
-		&:active{
-			-webkit-animation: scaleAnim .3s;
-		}
 	}
 
 }

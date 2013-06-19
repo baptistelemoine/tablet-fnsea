@@ -15,6 +15,10 @@ define([
 
 		template:_.template(AlbumTmpl),
 
+        events:{
+            'click a':'onClick'
+        },
+
         initialize:function(options) {
           _.bindAll(this, 'render');
           this.model.get('photos').on('reset', this.render);
@@ -23,6 +27,13 @@ define([
         render:function(){
             this.$el.empty().append(this.template(this.model.toJSON()));
 			return this;
+        },
+
+        onClick:function(e){
+            var self = this;
+            this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
+                self.$el.removeClass('active');
+            });
         }
 
     });
