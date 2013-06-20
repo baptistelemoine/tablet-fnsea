@@ -786,14 +786,16 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   display: block;
   margin-top: -51%;
 }
+.content-box.video-box .video-thumb .button {
+  margin-top: -34%;
+  margin-left: 44%;
+}
 .content-box.video-box .video-thumb .video-length {
   color: #fff;
   font-size: 18px;
-  bottom: 8%;
-  right: 5%;
-}
-.content-box.video-box .content-box-footer {
-  position: relative;
+  margin-top: -40px;
+  float: right;
+  margin-right: 30px;
 }
 .content-box.video-box .content-box-footer span {
   text-align: center;

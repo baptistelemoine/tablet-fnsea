@@ -80,7 +80,7 @@ define([
 		},
 
 		getArticle:function(hash, path){
-
+			console.log('videos !')
 			var self = this;
 			var item;
 			if(hash === 'videos') {
