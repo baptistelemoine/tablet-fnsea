@@ -1,13 +1,9 @@
   <div class="left-nav one-btn">
     <div class="button square bg-blue-twitter"><span class="icon-exchange" /></div>
-  </div>        
-  <div class="video-thumb">
-    <!-- <img src="images/test2.png" /> -->
-    <a href="#/medias/videos/<%= id %>">
-      <div class="inner"><img src="<%= thumbnail.hqDefault %>" /></div>
-      <div class="button rectangle bg-green"><span class="icon-play" /></div>
-      <div class="video-length"><%= duration_formated %></div>
-    </a>
+  </div>
+  <a href="#/medias/videos/<%= id %>">
+    <div class="video-thumb" style="background: linear-gradient(to right, rgba(40, 82, 88, .9),  rgba(40, 82, 88, .9)), url(<%= thumbnail.hqDefault %>) no-repeat 50% 50%;"></div>
+  </a>
   </div>
   <div class="title-container">
     <p><a href="#/medias/videos/<%= id %>"><%= title %></a></p>
@@ -18,5 +14,4 @@
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>
     <span class="icon-eye-1"></span><span>vue <%= viewCount %> fois</span>
-    <div class="button bg-green"><p><a href="#/medias/videos">Vidéos</a><!-- <span class="badge">43</span> --></p></div>
   </div>

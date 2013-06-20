@@ -168,10 +168,10 @@ define([
 			var listView;
 			switch(type){
 				case 'albums' :
-					listView = new ListView({collection:new Albums({nb_results:5})});
+					listView = new ListView({collection:new Albums({nb_results:6})});
 				break;
 				case 'videos' :
-					listView = new ListView({collection:new Videos({nb_results:5})});
+					listView = new ListView({collection:new Videos({nb_results:6})});
 				break;
 			}
 
