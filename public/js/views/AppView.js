@@ -45,8 +45,10 @@ define([
 			var menu = new Menu();
 			menu.render();
 
-			var header = new Header();
-			header.render();
+			this.header = new Header({
+				model:new Backbone.Model({ title: "accueil" })
+			});
+			this.header.render();
 
 			$('#article-complete').show();
 
@@ -80,7 +82,7 @@ define([
 		},
 
 		getArticle:function(hash, path){
-			console.log('videos !')
+
 			var self = this;
 			var item;
 			if(hash === 'videos') {
@@ -110,6 +112,8 @@ define([
 
 			if(!this.launchRequest()) return;
 
+			this.header.model.set({title:'actualités'});
+
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
 
 			var listView = new ListView({
@@ -131,6 +135,8 @@ define([
 		getHome:function(hash){
 
 			if(!this.launchRequest()) return;
+
+			this.header.model.set({title:'accueil'});
 
 			var self = this;
 
@@ -169,9 +175,11 @@ define([
 			switch(type){
 				case 'albums' :
 					listView = new ListView({collection:new Albums({nb_results:6})});
+					this.header.model.set({title:'photos'});
 				break;
 				case 'videos' :
 					listView = new ListView({collection:new Videos({nb_results:6})});
+					this.header.model.set({title:'vidéos'});
 				break;
 			}
 

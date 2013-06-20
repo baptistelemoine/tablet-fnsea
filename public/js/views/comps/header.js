@@ -16,10 +16,16 @@ define([
 
           _.bindAll(this, 'render');
 
+          //update title header
+          var self = this;
+          this.model.on('change', function(){
+            $('div.header p.title').text(self.model.get('title'));
+          });
+
         },
 
         render:function(){
-			this.$el.append(this.template());
+			this.$el.append(this.template(this.model.toJSON()));
             return this;
         }
 
