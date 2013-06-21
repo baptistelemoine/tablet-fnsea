@@ -44,12 +44,14 @@ define([
         },
 
         close:function(){
-            if(this.isOpen()) this.$handler.trigger('click');
+            // if(this.isOpen()) this.$handler.trigger('click');
+            if(this.isOpen()) this.$handler.prop('checked', false);
             this.$el.empty();
         },
 
         open:function(){
-            if(!this.isOpen()) this.$handler.trigger('click');
+            // if(!this.isOpen()) this.$handler.trigger('click');
+            if(!this.isOpen()) this.$handler.prop('checked', true);
         },
 
         isOpen:function(){
