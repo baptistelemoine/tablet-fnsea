@@ -16,8 +16,7 @@ define([
 		template:_.template(VideoTmpl),
 
         events:{
-            'click a':'onClick',
-            'click div.video-thumb':'onImgClick'
+            'click':'onClick'
         },
 
         initialize:function(options) {
@@ -30,14 +29,11 @@ define([
         },
 
         onClick:function(e){
+            Backbone.history.navigate('#/medias/videos/'.concat(this.model.get('id')), {trigger:true, replace:true});
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');
             });
-        },
-        onImgClick:function(e){
-            this.onClick(null);
-            window.location.href = '#/medias/videos/'.concat(this.model.get('id'));
         }
     });
 

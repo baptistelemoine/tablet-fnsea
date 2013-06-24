@@ -3,27 +3,25 @@
     <div class="button square bg-blue-twitter"><span class="icon-exchange" /></div>
   </div>
   <div class="title-container">
-    <p><a href="#/medias/albums/<%= id %>"><%= name %><span class="badge"><%= count %></span></a></p>
+    <p><%= name %><span class="badge"><%= count %></span></p>
   </div>
-  <a href="#/medias/albums/<%= id %>">
-    <div class="img-container">
-      <ul>
-        <% for (var i=0; i<5; i++) { %>
-          <% if(!photos.models.length) break; %>
-            <% if(photos.models.length === i) { %>
-              <% for(var j=0; j<5 - i;j++) { %>
-              <li></li>
-              <% } %>
-            <% break; %>
-          <% } else { %>
-          <li><img src="<%= photos.at(i).get('source') %>" /></li>
+  <div class="img-container">
+    <ul>
+      <% for (var i=0; i<5; i++) { %>
+        <% if(!photos.models.length) break; %>
+        <% if(photos.models.length === i) { %>
+          <% for(var j=0; j<5 - i;j++) { %>
+            <li></li>
           <% } %>
-        <% } %>
-      </ul>
-    </div>
-  </a>
+      <% break; %>
+      <% } else { %>
+        <li><img src="<%= photos.at(i).get('source') %>" /></li>
+      <% } %>
+      <% } %>
+    </ul>
+  </div>
   <div class="summary-container">
-    <p><a href="#/medias/albums/<%= id %>"><% if(description.length > 200) { %><%= description.substring(0, 200) %> [...]<% } else { %><%= description %><% } %></a></p>
+    <p><% if(description.length > 200) { %><%= description.substring(0, 200) %> [...]<% } else { %><%= description %><% } %></p>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>

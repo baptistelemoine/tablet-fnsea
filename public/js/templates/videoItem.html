@@ -1,16 +1,15 @@
   <div class="left-nav one-btn">
     <div class="button square bg-blue-twitter"><span class="icon-exchange" /></div>
-  </div>
-  
-    <div class="video-thumb" style="background: -webkit-linear-gradient(rgba(40, 82, 88, .9),  rgba(40, 82, 88, .9)), url(<%= thumbnail.hqDefault %>) no-repeat 50% 50%;">
+  </div>  
+  <div class="video-thumb" style="background: -webkit-linear-gradient(rgba(40, 82, 88, .9),  rgba(40, 82, 88, .9)), url(<%= thumbnail.hqDefault %>) no-repeat 50% 50%;">
       <div class="button rectangle bg-green"><span class="icon-play" /></div>      
-    </div>
+  </div>
   <div class="video-length"><%= duration_formated %></div>
   <div class="title-container">
-    <p><a href="#/medias/videos/<%= id %>"><%= title %></a></p>
+    <p><%= title %></a></p>
   </div>
   <div class="summary-container">
-    <a href="#/medias/videos/<%= id %>"><p><%= description %></p></a>
+    <p><%= description %></p>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>

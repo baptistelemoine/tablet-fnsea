@@ -6,11 +6,11 @@
     <span>Dossier : <%= thema %></span><span class="badge"><%= count %></span>
   </div>
   <div class="title-container">
-    <p><a href="#<%= entry.niceUrl %>"><%= entry.title %></a></p>
+    <p><%= entry.title %></p>
   </div>
-  <% if(entry.image) { %><a href="#<%= entry.niceUrl %>"><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %></a>
+  <% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %>
   <div class="summary-container">
-    <a href="#<%= entry.niceUrl %>"><%= entry.summary.substring(0, 250) %> [...]</a></div>
+    <%= entry.summary.substring(0, 250) %> [...]</div>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>

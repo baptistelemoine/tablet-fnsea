@@ -30,7 +30,7 @@ define([
         },
 
         onClick:function(e){
-            if(this.$handler.is(':checked')) this.$handler.trigger('click');
+            if(this.$handler.is(':checked')) this.$handler.prop('checked', false);
         }
 
     });

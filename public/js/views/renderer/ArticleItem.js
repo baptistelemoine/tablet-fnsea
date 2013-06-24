@@ -12,7 +12,7 @@ define([
 		className:'content-box',
 
         events:{
-            'click a':'onClick'
+            'click :not(.button)':'onClick'
         },
 
         initialize:function(model, options) {
@@ -29,6 +29,7 @@ define([
         },
 
         onClick:function(e){
+            Backbone.history.navigate(this.model.get('entry').niceUrl, {trigger:true, replace:true});
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');
