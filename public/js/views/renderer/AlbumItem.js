@@ -16,7 +16,7 @@ define([
 		template:_.template(AlbumTmpl),
 
         events:{
-            'click a':'onClick'
+            'click':'onClick'
         },
 
         initialize:function(options) {
@@ -30,7 +30,7 @@ define([
         },
 
         onClick:function(e){
-            Backbone.history.navigate('#/medias/albums/'.concat(this.model.get('id')), {trigger:true, replace:true});
+            Backbone.history.navigate('#/medias/albums/'.concat(this.model.get('id')), {trigger:true, replace:false});
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');

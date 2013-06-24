@@ -52,11 +52,13 @@ define([
 		server_api: {
 			'limit' : function () { return this.nb_results; },
 			//is first request ? --> dont take the 3 first albums (timeline + profile pics, cover photos)
-			'offset': function() { return (this.currentPage * this.nb_results) === this.nb_results ? 3 : (this.currentPage * this.nb_results - 2);  }
+			'offset': function() { return (this.currentPage * this.nb_results) === this.nb_results ? 0 : (this.currentPage-1) * this.nb_results;  }
 		},
 
 		parse:function(response){
-			return response.data;
+			return _.reject(response.data, function (item) {
+				return item.name === 'Cover Photos' || item.name === 'Profile Pictures' || item.name === 'Timeline Photos';
+			});
 		}
 
 	});

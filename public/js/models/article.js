@@ -22,6 +22,9 @@ define([
 			if(response.entry.publishedDate){
 				response.time = moment(response.entry.publishedDate).fromNow();
 			}
+			if(response.contract) response.item_type = 'job';
+			if(response.pressType) response.item_type = 'presse';
+			if(response.beginning) response.item_type = 'event';
 			return response;
 		}
     });

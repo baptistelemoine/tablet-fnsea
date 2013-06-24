@@ -26,9 +26,16 @@ define([
 
             switch(this.model.get('item_type')){
                 case 'article' :
-                    if(this.model.has('themaUrl')) this.template = _.template(ArticleTmpl);
-                    if(this.model.has('contract')) this.template = _.template(JobTmpl);
-                    if(this.model.has('pressType')) this.template = _.template(PresseTmpl);
+                    this.template = _.template(ArticleTmpl);
+                break;
+                case 'job' :
+                    this.template = _.template(JobTmpl);
+                break;
+                case 'presse' :
+                    this.template = _.template(PresseTmpl);
+                break;
+                case 'event' :
+                    // this.template = _.template(VideoTmpl);
                 break;
                 case 'video' :
                     this.template = _.template(VideoTmpl);
@@ -44,13 +51,11 @@ define([
         },
 
         close:function(){
-            // if(this.isOpen()) this.$handler.trigger('click');
             if(this.isOpen()) this.$handler.prop('checked', false);
             this.$el.empty();
         },
 
         open:function(){
-            // if(!this.isOpen()) this.$handler.trigger('click');
             if(!this.isOpen()) this.$handler.prop('checked', true);
         },
 

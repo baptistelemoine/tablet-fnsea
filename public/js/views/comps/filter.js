@@ -10,6 +10,10 @@ define([
 
 		template:_.template(FilterTmpl),
 
+        className:'header filter-menu',
+
+        tagName:'div',
+
         list:[],
 
         events:{
@@ -19,6 +23,8 @@ define([
         initialize:function(options) {
 
           _.bindAll(this, 'render', 'onCheck');
+
+          this.$el.remove();
 
           this.list = options.list;
           // this.render();

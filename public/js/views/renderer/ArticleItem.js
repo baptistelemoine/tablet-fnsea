@@ -29,7 +29,7 @@ define([
         },
 
         onClick:function(e){
-            Backbone.history.navigate(this.model.get('entry').niceUrl, {trigger:true, replace:true});
+            Backbone.history.navigate(this.model.get('entry').niceUrl, {trigger:true, replace:false});
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');

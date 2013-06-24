@@ -196,6 +196,9 @@ li {
 .bg-pink {
   background-color: #8c5d79;
 }
+.bg-red {
+  background-color: #c0392b;
+}
 .purple {
   color: #6a5a8c;
 }
@@ -203,7 +206,7 @@ li {
   color: #8c5d79;
 }
 .red {
-  color: #c0392b !important;
+  color: #c0392b;
 }
 ul.combo-box {
   visibility: hidden;
@@ -453,6 +456,9 @@ input[type="checkbox"]:checked + div.regular-checkbox.blue {
 }
 input[type="checkbox"]:checked + div.regular-checkbox.pink {
   background-color: #8c5d79;
+}
+input[type="checkbox"]:checked + div.regular-checkbox.red {
+  background-color: #c0392b;
 }
 input[type="checkbox"]:checked + div.regular-checkbox:after {
   font-family: 'fontello';

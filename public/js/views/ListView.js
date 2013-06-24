@@ -52,14 +52,19 @@ define([
 
             switch(item.get('item_type')){
                 case 'article' : {
-                    if(item.has('themaUrl'))
-                        article = new ArticleItem({model:item}, {itemRenderer:ArticleTmpl});
-                    if(item.has('contract'))
-                        article = new ArticleItem({model:item}, {itemRenderer:JobTmpl});
-                    if(item.has('pressType'))
-                        article = new ArticleItem({model:item}, {itemRenderer:PresseTmpl});
-                    if(item.has('beginning'))
-                        article = new ArticleItem({model:item}, {itemRenderer:EventTmpl});
+                    article = new ArticleItem({model:item}, {itemRenderer:ArticleTmpl});
+                }
+                break;
+                case 'job' : {
+                    article = new ArticleItem({model:item}, {itemRenderer:JobTmpl});
+                }
+                break;
+                case 'presse' : {
+                    article = new ArticleItem({model:item}, {itemRenderer:PresseTmpl});
+                }
+                break;
+                case 'event' : {
+                    article = new ArticleItem({model:item}, {itemRenderer:EventTmpl});
                 }
                 break;
                 case 'video' : {

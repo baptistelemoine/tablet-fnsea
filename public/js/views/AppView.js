@@ -156,9 +156,11 @@ define([
 					collection:mixed,
 					filterEnabled:true,
 					filterList:[
-						{text:'Actualités', color:'orange', value:'article'},
+						{text:'Actu', color:'orange', value:'article'},
+						{text:'Presse', color:'purple', value:'presse'},
+						{text:'Emploi', color:'blue', value:'job'},
 						{text:'Photos', color:'pink', value:'album'},
-						{text:'Vidéos', color:'blue', value:'video'}
+						{text:'Vidéos', color:'green', value:'video'}
 					]
 				});
 				mixed.fetch();
