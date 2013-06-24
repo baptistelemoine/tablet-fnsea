@@ -6,8 +6,8 @@ module.exports = function(grunt) {
     requirejs: {
       production: {
         options: {
-          baseUrl: "js/",
-          mainConfigFile: "js/main.js",
+          baseUrl: "public/js/",
+          mainConfigFile: "public/js/main.js",
           out: "build/fnsea-tablet-min.js",
           name:'main'
         }
@@ -22,14 +22,23 @@ module.exports = function(grunt) {
     watch:{
       files : ['public/less/*.less'],
       tasks : ['less']
+    },
+    cssmin:{
+      with_banner:{
+        options:{
+          banner:'/* css minified  */'
+        },
+        files:{
+          'build/style-min.css':['public/css/*.css']
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-
-  grunt.registerTask('deploy', 'requirejs');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 
 };
