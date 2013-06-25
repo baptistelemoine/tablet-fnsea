@@ -1,1 +1,40 @@
-my page
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FNSEA tablet</title>    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/fatstrap.css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+  <!-- Hidden input, rel to open close menu, combo box, filter and article -->
+  <input type="checkbox" name="handler-filter" class="handler" id="handler-filter" onclick="null" />
+  <input type="checkbox" name="handler-combo" class="handler" id="handler-combo" onclick="null" />
+  <input type="checkbox" name="handler-menu" class="handler" id="handler-menu" onclick="null" />
+  <input type="checkbox" name="handler-article" class="handler" id="handler-article" onclick="null" />
+
+  <!-- Main left menu, a la facebook -->
+  <div id="menu"></div>
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Content area, responsive layout (columns) -->
+    <div id="content">
+      <div id="columns"></div>
+      <!-- List loader -->
+      <div class="spinner-container">
+        <span class="spinner"></span>
+      </div>
+    </div>
+    <!-- END CONTENT -->
+    <!-- COMPLETE ARTICLE OVER CONTENT-->
+    <div id="article-complete"></div>
+  
+
+  <!-- Load the app with require -->
+  <script data-main="js/main" src="js/vendor/requirejs/require.js"></script>
+</body>
+</html>
