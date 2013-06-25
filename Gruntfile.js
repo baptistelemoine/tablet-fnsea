@@ -20,8 +20,16 @@ module.exports = function(grunt) {
       }
     },
     watch:{
-      files : ['public/less/*.less'],
-      tasks : ['less']
+      options:{
+        livereload:true
+      },
+      css:{
+        files : ['public/less/*.less'],
+        tasks : ['less']
+      },
+      livereload: {
+        files: ['public/js/**/*.js']
+      }
     },
     cssmin:{
       with_banner:{
