@@ -8,4 +8,4 @@ app.configure(function () {
 });
 
 var port = process.env.PORT || 3000;
-app.listen(3000);
+app.listen(port);
