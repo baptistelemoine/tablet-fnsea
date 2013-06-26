@@ -44,9 +44,10 @@ define(function(){
 		TW_SHARE_URL:'https://twitter.com/share?url=',
 		GOOG_SHARE_URL:'https://plus.google.com/share?url=',
 		SITE_URL:'http://www.fnsea.fr',
-		API_URL:'http://apifnsea.herokuapp.com/'
+		API_URL:'http://apifnsea.herokuapp.com/',
+		TWITTER_USER:'fnsea'
 
 
-	}
+	};
 
 });

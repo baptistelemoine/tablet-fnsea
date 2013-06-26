@@ -1,0 +1,6 @@
+<ul>
+<% _.each(this.collection.models, function (model, index) { %>
+	<% if(index > 4) return; %>
+	<li><span class="icon-twitter"></span><%= model.get('text') %></li>
+<% });%>
+</ul>

@@ -15,9 +15,11 @@ define([
   'views/ArticleView',
   'models/article',
   'models/video',
-  'models/album'
+  'models/album',
+  'collections/tweets',
+  'views/comps/ticker'
 
-], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel){
+], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker){
 
 	return Backbone.View.extend({
 
@@ -62,6 +64,11 @@ define([
 						self.appRouter.navigate(self.currentListUrl.replace(self.apiURL, ''), {trigger:true, replace:true});
 				}
 			});
+
+			//configure tab bar tweets ticker
+			var tweets = new Tweets();
+			var ticker = new Ticker({collection:tweets});
+			tweets.fetch({reset:true});
 		},
 
 		launchRequest:function(){
@@ -160,7 +167,8 @@ define([
 						{text:'Presse', color:'purple', value:'presse'},
 						{text:'Emploi', color:'blue', value:'job'},
 						{text:'Photos', color:'pink', value:'album'},
-						{text:'Vidéos', color:'green', value:'video'}
+						{text:'Vidéos', color:'green', value:'video'},
+						{text:'Agenda', color:'red', value:'event'}
 					]
 				});
 				mixed.fetch();
