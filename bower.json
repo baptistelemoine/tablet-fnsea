@@ -17,6 +17,7 @@
     "bootstrap": "~2.3.2",
     "fastclick": "~0.6.7",
     "text": "~2.0.6",
-    "enquire": "~2.0.1"
+    "enquire": "~2.0.1",
+    "swipeview": "latest"
   }
 }

@@ -39,6 +39,7 @@ define([
 			this.appRouter.on('route:root', this.getHome);
 			this.appRouter.on('route:getMedias', this.getMedias);
 			this.appRouter.on('route:getArticle', this.getArticle);
+			this.appRouter.on('route:getPhotos', this.getPhotos);
 			Backbone.history.start({pushState:false});
 
 		},
@@ -200,6 +201,10 @@ define([
 				}
 			});
 			this.currentView = listView;
+		},
+
+		getPhotos:function(id){
+			console.log('photos');
 		}
 
 	});

@@ -12,7 +12,8 @@ require.config({
     bootstrap:'vendor/bootstrap/docs/assets/js/bootstrap',
     layout:'layout/layout',
     moment:'vendor/moment/min/moment.min',
-    enquire:'vendor/enquire/dist/enquire'
+    enquire:'vendor/enquire/dist/enquire',
+    swipeview:'vendor/swipeview/src/swipeview'
 
   },
   shim: {

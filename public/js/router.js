@@ -24,7 +24,7 @@ define([
           'les-evenements/*path'                                             : 'getEvenement',
           'medias/:type'                                                     : 'getMedias',
           'medias/:type/*path'                                               : 'getArticle',
-          ':albumID/photos'                                                  : 'getPhotos',
+          'photos/:albumID'                                                  : 'getPhotos',
           'videos'                                                           : 'getVideos',
           'contact'                                                          : 'getContact',
           '*path'                                                            : 'default'
