@@ -20,18 +20,19 @@ define([
         render:function(){
 
             //hide all under wrapper
-            $('div', this.$el).hide();
+            this.$el.children().hide();
             //init slider
             this.slider = new SwipeView(this.el, { numberOfPages: this.collection.length });
 
+            //populate slider with 3 first images
             for (var i = 0; i < 3; i++) {
                 page = i===0 ? this.collection.length-1 : i-1;
                 $(this.slider.masterPages[i]).append('<img src="'+this.collection.at(page).get('source')+'">');
             }
 
+            //on flip, load upcoming images
             var self = this;
             this.slider.onFlip(function(){
-                console.log('flip')
                 for (var i = 0; i < 3; i++) {
                     var upcoming = self.slider.masterPages[i].dataset.upcomingPageIndex;
                     if(upcoming !== self.slider.masterPages[i].pageIndex){
@@ -39,7 +40,15 @@ define([
                     }
                 }
             });
+        },
 
+        dispose:function(){
+            this.$el.children().show();
+            if(this.slider) {
+                this.slider.slider.remove();
+                this.slider.destroy();
+                this.slider = null;
+            }
         }
 
     });

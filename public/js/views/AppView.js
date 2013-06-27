@@ -31,7 +31,7 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias');
+			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias', 'getPhotos');
 
 			//generic layout
 			this.layout();
@@ -79,6 +79,7 @@ define([
 			var currentURL = this.apiURL.concat(Backbone.history.fragment);
 
 			if(this.articleView) this.articleView.close();
+			// if(this.swipeView) this.swipeView.dispose();
 
 			if(this.currentView) {
 				if(this.currentListUrl === currentURL) return false;
@@ -101,6 +102,7 @@ define([
 				});
 			}
 			else if(hash === 'albums'){
+				if(this.swipeView) this.swipeView.dispose();
 				item = new AlbumModel([], {
 					url:ConfigManager.GRAPH_URL.concat(path)
 				});
@@ -218,7 +220,7 @@ define([
 				}
 			});
 
-			var swipeView = new SwipeView({collection:photos});
+			this.swipeView = new SwipeView({collection:photos});
 		}
 
 	});
