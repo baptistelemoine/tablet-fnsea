@@ -10,11 +10,15 @@ define([
 
         el:'#wrapper',
 
+        $preloader:$('div.swipeview-preloader'),
+
         initialize:function(options) {
 
-          _.bindAll(this, 'render');
-          this.collection.on('reset', this.render);
+            _.bindAll(this, 'render');
+            this.collection.on('reset', this.render);
 
+            this.$el.children().hide();
+            this.$preloader.show();
         },
 
         render:function(){
@@ -44,6 +48,7 @@ define([
 
         dispose:function(){
             this.$el.children().show();
+            this.$preloader.hide();
             if(this.slider) {
                 this.slider.slider.remove();
                 this.slider.destroy();
