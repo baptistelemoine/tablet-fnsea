@@ -17,9 +17,11 @@ define([
   'models/video',
   'models/album',
   'collections/tweets',
-  'views/comps/ticker'
+  'views/comps/ticker',
+  'collections/photos',
+  'views/swipeView'
 
-], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker){
+], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker, Photos, SwipeView){
 
 	return Backbone.View.extend({
 
@@ -204,7 +206,19 @@ define([
 		},
 
 		getPhotos:function(id){
-			console.log('photos');
+
+			var album = new AlbumModel();
+			album.set({id:id});
+
+			var photos = new Photos([], {album:album});
+			photos.fetch({
+				reset:true,
+				data:{
+					limit:100
+				}
+			});
+
+			var swipeView = new SwipeView({collection:photos});
 		}
 
 	});

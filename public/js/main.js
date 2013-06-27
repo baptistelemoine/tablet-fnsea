@@ -29,6 +29,9 @@ require.config({
     bootstrap : ['jquery'],
     enquire:{
       exports:'enquire'
+    },
+    swipeview:{
+        exports:'SwipeView'
     }
   }
 });
