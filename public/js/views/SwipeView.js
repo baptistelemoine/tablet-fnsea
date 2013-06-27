@@ -47,7 +47,7 @@ define([
         },
 
         dispose:function(){
-            this.$el.children().show();
+            this.$el.children().not($('div.filter-menu')).show();
             this.$preloader.hide();
             if(this.slider) {
                 this.slider.slider.remove();
