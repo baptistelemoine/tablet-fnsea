@@ -1117,6 +1117,17 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   background: #232323;
   position: relative;
 }
+#wrapper > div > .swipeview-loading {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#555555)), -webkit-gradient(linear, 0 0, 100% 0, from(#777777), to(#777777));
+  background-position: 50% 50%, 50% 50%;
+  background-size: 200px 140px, 210px 150px;
+  background-repeat: no-repeat;
+}
+#wrapper > div > .swipeview-loading img,
+#swipeview-slider img.loading {
+  -webkit-transition-duration: 0s;
+  opacity: 0;
+}
 #swipeview-slider > div {
   background: #232323;
   position: relative;

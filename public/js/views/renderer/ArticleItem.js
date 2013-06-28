@@ -29,16 +29,12 @@ define([
         },
 
         onClick:function(e){
-            // e.preventDefault();
-            // Backbone.history.navigate(this.model.get('entry').niceUrl, {trigger:true, replace:false});
+
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');
                 Backbone.history.navigate(self.model.get('entry').niceUrl, {trigger:true, replace:false});
             });
-            /*this.$el.on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
-                self.$el.removeClass('active');
-            });*/
         }
 
     });

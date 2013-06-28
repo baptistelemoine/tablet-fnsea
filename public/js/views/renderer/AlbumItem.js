@@ -30,10 +30,11 @@ define([
         },
 
         onClick:function(e){
-            Backbone.history.navigate('#/medias/albums/'.concat(this.model.get('id')), {trigger:true, replace:false});
+
             var self = this;
             this.$el.addClass('active').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function (e){
                 self.$el.removeClass('active');
+                Backbone.history.navigate('#/medias/albums/'.concat(self.model.get('id')), {trigger:true, replace:false});
             });
         }
 
