@@ -2,7 +2,7 @@
 @content-box-width:485px;
 @content-box-height:620px;
 
-.content-box{	
+.content-box{
 	max-width: @content-box-width;	
 	width: 100%;
 	text-align: left;
@@ -12,6 +12,8 @@
 	display: inline-block;
 
 	-webkit-backface-visibility: hidden;
+
+	// div {pointer-events:none;}
 
 	&.active{
 		-webkit-animation: scaleAnim .3s;
