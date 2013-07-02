@@ -7,7 +7,8 @@ define([
 		return Backbone.Model.extend({
 
 			defaults:{
-				'item_type':'video'
+				'item_type':'video',
+				'viewCount':0
 			},
 
 			parse:function(response, options){
