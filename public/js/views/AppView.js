@@ -25,7 +25,7 @@ define([
 
 	return Backbone.View.extend({
 
-		apiURL : 'http://apifnsea.herokuapp.com/',
+		apiURL : 'http://apifnsea.herokuapp.com/api/',
 
 		currentListUrl:'',
 
@@ -153,7 +153,7 @@ define([
 			var self = this;
 
 			var articles = new Articles({
-				url:self.apiURL,
+				url:self.apiURL.concat('all'),
 				nb_results:50
 			});
 			var videos = new Videos({nb_results:30});

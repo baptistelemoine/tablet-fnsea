@@ -16,10 +16,6 @@ define([
             this.paginator_ui.perPage = param.nb_results || this.paginator_ui.perPage;
         },
 
-        /*comparator:function(model){
-            return this.indexOf(model) % 2;
-        },*/
-
         paginator_core: {
             type: 'GET',
             dataType: 'json',
@@ -37,10 +33,13 @@ define([
         },
 
         server_api: {
-            'skip': function() { return this.currentPage * this.perPage;},
-            'limit': function() { return this.perPage; }
-        }
+            'from': function() { return this.currentPage * this.perPage;},
+            'size': function() { return this.perPage; }
+        },
 
+        parse:function(response){
+            return response.result.hits.hits;
+        }
     });
 
 });

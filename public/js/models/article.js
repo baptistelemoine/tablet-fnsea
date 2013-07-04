@@ -13,19 +13,23 @@ define([
 
 		parse:function(response, options){
 
-			if(_.isArray(response)) response = _.first(response);
+			var item = {};
+			if(response.result) item = _.first(response.result.hits.hits)._source;
+			else item = response._source;
+
+			if(_.isArray(item)) item = _.first(item);
 			//add some properties
-			if(response.themaUrl){
-				var thema = ConfigManager.getThemaProp(_.last(response.themaUrl.split('/')));
-				response.thema = thema.name;
+			if(item.themaUrl){
+				var thema = ConfigManager.getThemaProp(_.last(item.themaUrl.split('/')));
+				item.thema = thema.name;
 			}
-			if(response.entry.publishedDate){
-				response.time = moment(response.entry.publishedDate).fromNow();
+			if(item.entry.publishedDate){
+				item.time = moment(item.entry.publishedDate).fromNow();
 			}
-			if(response.contract) response.item_type = 'job';
-			if(response.pressType) response.item_type = 'presse';
-			if(response.beginning) response.item_type = 'event';
-			return response;
+			if(item.contract) item.item_type = 'job';
+			if(item.pressType) item.item_type = 'presse';
+			if(item.beginning) item.item_type = 'event';
+			return item;
 		}
     });
 
