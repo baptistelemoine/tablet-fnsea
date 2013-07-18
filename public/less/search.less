@@ -4,7 +4,92 @@
 	position: absolute;
 	top: -200px;
 	width: 100%;
-	min-height: 200px;
+	min-height: 250px;
 	-webkit-transition: -webkit-transform .5s ease-in-out;
   	-moz-transition: -moz-transform .5s ease-in-out;
+
+  	input[type="text"]{
+  		webkit-border-radius: 0;
+  		-moz-border-radius: 0;
+  		border-radius: 0;
+  		-webkit-box-shadow: none;
+  		-moz-box-shadow: none;
+  		box-shadow: none;
+  	}
+
+  	.search-container{
+  		padding: 25px;
+  	}
+
+  	h1,h3{
+  		color:@light;
+  		font-size: @font-size-small;
+  		opacity: .3;
+  		font-weight: normal;
+  		line-height: 20px;
+  	}
+  	h1{
+  		opacity: 1;
+  		font-size: @font-size-large;
+  		margin-bottom: 0;
+  	}
+  	h3{
+  		margin-top: 0;
+  	}
+
+  	.search-box{
+  		width: 100%;
+  	}
+
+  	#search-text{
+  	    width: 50%;
+  	    padding: 15px 0 15px 20px;
+  	    font-size: 16px;
+  	    font-family: Montserrat, sans-serif;
+  	    border: 1px solid rgba(255, 255, 255, 0.05);
+  	    height: 50px;
+  	    margin-right: 0;
+  	    color: white;
+  	    outline: none;
+  	    background: @dark;
+  	    float: left;
+  	    box-sizing: border-box;
+  	    transition: all 0.15s;
+  	    margin-bottom: 20px;
+
+  	    &:focus{
+  	    	background: @green;
+  	    	// border: 0 none;
+  	    }
+
+  	}
+  	::-webkit-input-placeholder { /* WebKit browsers */
+  	    color: white;
+  	}
+  	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  	    color: white;
+  	}
+  	::-moz-placeholder { /* Mozilla Firefox 19+ */
+  	    color: white;
+  	}
+  	:-ms-input-placeholder { /* Internet Explorer 10+ */
+  	    color: white;
+  	}
+
+  	label{
+		text-align: center;
+	}
+	.checkbox input[type="checkbox"] {
+		float: none;
+	}
+	.checkbox.inline + .checkbox.inline {
+		margin-left: 110px;
+	}
+
+  	@media screen and (max-width:800px) {
+  	  #search-text{
+  			width: 75%;
+  		}
+  	}
+
   }
