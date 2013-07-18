@@ -10,7 +10,8 @@
   </div>
   <% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %>
   <div class="summary-container">
-    <%= entry.summary.substring(0, 250) %> [...]</div>
+    <% if(entry.summary.length > 250) { %><%= entry.summary.substring(0, 250) %> [...]</div><% } else { %>
+    <%= entry.summary %><% } %>
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>

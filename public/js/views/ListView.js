@@ -24,26 +24,12 @@ define([
         $preloader: $('div.spinner-container'),
         isLoading: false,
 
-        filterEnabled:false,
-
         initialize:function(options) {
 
             _.bindAll(this, 'render', 'addAll', 'checkScroll');
-
             this.cache = [];
-
             this.collection.on('reset', this.addAll);
-            this.filterEnabled = options.filterEnabled;
 
-            var self = this;
-            var filter = new Filter({
-                collection:this.collection,
-                list:options.filterList
-            });
-            if(this.filterEnabled){
-                filter.render();
-                filter.on('filter', function (e){ self.cache = []; });
-            }
         },
 
         render:function(item){

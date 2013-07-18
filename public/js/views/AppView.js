@@ -132,8 +132,7 @@ define([
 				collection:new Articles({
 					url:currentURL,
 					nb_results:6
-				}),
-				filterEnabled:false
+				})
 			});
 			listView.collection.pager({
 				reset:true,
@@ -142,6 +141,10 @@ define([
 				}
 			});
 			this.currentView = listView;
+		},
+
+		setupSearch:function(){
+			
 		},
 
 		getHome:function(hash){
@@ -165,16 +168,7 @@ define([
 				var result = _.union(articles.models, videos.models, albums.models);
 				var mixed = new Mixed(result, {perPage:6});
 				var listView = new ListView({
-					collection:mixed,
-					filterEnabled:true,
-					filterList:[
-						{text:'Actu', color:'orange', value:'article'},
-						{text:'Presse', color:'purple', value:'presse'},
-						{text:'Emploi', color:'blue', value:'job'},
-						{text:'Photos', color:'pink', value:'album'},
-						{text:'Vidéos', color:'green', value:'video'},
-						{text:'Agenda', color:'red', value:'event'}
-					]
+					collection:mixed
 				});
 				mixed.fetch();
 				mixed.goTo(1);

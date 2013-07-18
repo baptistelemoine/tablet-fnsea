@@ -62,18 +62,16 @@ figure {
 .handler#handler-menu:checked ~ #wrapper label[for="handler-menu"] {
   background-color: #1f7f5c;
 }
-.handler#handler-filter ~ #wrapper label[for="handler-filter"] {
-  display: none;
-}
-.handler#handler-filter:checked ~ #wrapper label[for="handler-filter"] {
+.handler#handler-search:checked ~ #wrapper label[for="handler-search"] {
   background-color: #1f7f5c;
 }
-.handler#handler-filter:checked ~ #wrapper div.filter-menu {
-  display: block;
+.handler#handler-search:checked ~ #wrapper #search {
+  -webkit-transform: translate3D(0, 260px, 0);
+  -moz-transform: translate3D(0, 260px, 0);
 }
-.handler#handler-filter:checked ~ #wrapper #content {
-  -webkit-transform: translate3D(0, 60px, 0);
-  -moz-transform: translate3D(0, 60px, 0);
+.handler#handler-search:checked ~ #wrapper #content {
+  -webkit-transform: translate3D(0, 200px, 0);
+  -moz-transform: translate3D(0, 200px, 0);
 }
 .handler#handler-combo:checked ~ #wrapper label[for="handler-combo"] {
   background-color: #1f7f5c;
@@ -627,6 +625,8 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   color: #fff;
   position: relative;
   z-index: 3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
 }
 .header p.title {
   text-transform: uppercase;
@@ -1170,4 +1170,13 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   transition-property: opacity;
   opacity: 1;
   pointer-events: none;
+}
+#search {
+  background: #232323;
+  position: absolute;
+  top: -200px;
+  width: 100%;
+  min-height: 200px;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
 }

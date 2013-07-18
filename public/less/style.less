@@ -54,33 +54,31 @@ figure { margin:0; }
     }    
   }
 
-  &#handler-filter{
+  &#handler-search{
     & ~ #wrapper {
-      label[for="handler-filter"]{
-        display: none;
+      label[for="handler-search"]{
+        // display: none;
       }
     }
   }
 
-  &#handler-filter:checked {
+  &#handler-search:checked {
     
     & ~ #wrapper {
-      label[for="handler-filter"]{
+      label[for="handler-search"]{
         background-color: @green;
       }
-      label[for="handler-combo"]{
-        // pointer-events:none;
-      }
-      div.filter-menu {
-        // visibility: visible;
-        display: block;
+      #search{
+        -webkit-transform: translate3D(0,260px,0);
+        -moz-transform: translate3D(0,260px,0);
       }
       #content{
-        -webkit-transform: translate3D(0,60px,0);
-        -moz-transform: translate3D(0,60px,0);
+        -webkit-transform: translate3D(0,200px,0);
+        -moz-transform: translate3D(0,200px,0);
 
       }      
     }
+
   }
 
   &#handler-combo:checked {
@@ -89,7 +87,7 @@ figure { margin:0; }
       label[for="handler-combo"]{
         background-color: @green;
       }
-      label[for="handler-filter"]{
+      label[for="handler-search"]{
         // pointer-events:none;
       }
       ul.combo-box {
