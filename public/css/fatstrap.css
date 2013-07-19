@@ -1179,7 +1179,7 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   position: absolute;
   top: -200px;
   width: 100%;
-  min-height: 250px;
+  height: 250px;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   -moz-transition: -moz-transform 0.5s ease-in-out;
 }
@@ -1227,30 +1227,35 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   float: left;
   box-sizing: border-box;
   transition: all 0.15s;
-  margin-bottom: 20px;
-}
-#search #search-text:focus {
-  background: #1f7f5c;
+  margin-bottom: 30px;
 }
 #search ::-webkit-input-placeholder {
   /* WebKit browsers */
 
   color: white;
+  opacity: .3;
+  font-style: italic;
 }
 #search :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
 
   color: white;
+  opacity: .3;
+  font-style: italic;
 }
 #search ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
 
   color: white;
+  opacity: .3;
+  font-style: italic;
 }
 #search :-ms-input-placeholder {
   /* Internet Explorer 10+ */
 
   color: white;
+  opacity: .3;
+  font-style: italic;
 }
 #search label {
   text-align: center;
@@ -1260,6 +1265,10 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 }
 #search .checkbox.inline + .checkbox.inline {
   margin-left: 110px;
+}
+#search .button.generic {
+  float: left;
+  padding: 15px;
 }
 @media screen and (max-width: 800px) {
   #search #search-text {

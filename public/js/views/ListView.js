@@ -63,7 +63,7 @@ define([
                 break;
 
             }
-
+            // console.log(this.collection);
             this.$container.append(article.render().el);
             this.cache.push(article.el);
 

@@ -4,7 +4,7 @@
 	position: absolute;
 	top: -200px;
 	width: 100%;
-	min-height: 250px;
+	height: 250px;
 	-webkit-transition: -webkit-transform .5s ease-in-out;
   	-moz-transition: -moz-transform .5s ease-in-out;
 
@@ -55,25 +55,33 @@
   	    float: left;
   	    box-sizing: border-box;
   	    transition: all 0.15s;
-  	    margin-bottom: 20px;
+  	    margin-bottom: 30px;
 
   	    &:focus{
-  	    	background: @green;
+  	    	// background: @green;
   	    	// border: 0 none;
   	    }
 
   	}
   	::-webkit-input-placeholder { /* WebKit browsers */
   	    color: white;
+        opacity: .3;
+        font-style: italic;
   	}
   	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
   	    color: white;
+        opacity: .3;
+        font-style: italic;
   	}
   	::-moz-placeholder { /* Mozilla Firefox 19+ */
   	    color: white;
+        opacity: .3;
+        font-style: italic;
   	}
   	:-ms-input-placeholder { /* Internet Explorer 10+ */
   	    color: white;
+        opacity: .3;
+        font-style: italic;
   	}
 
   	label{
@@ -85,6 +93,11 @@
 	.checkbox.inline + .checkbox.inline {
 		margin-left: 110px;
 	}
+
+  .button.generic{
+    float: left;
+    padding: 15px;
+  }
 
   	@media screen and (max-width:800px) {
   	  #search-text{

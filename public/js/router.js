@@ -27,6 +27,7 @@ define([
           'photos/:albumID'                                                  : 'getPhotos',
           'videos'                                                           : 'getVideos',
           'contact'                                                          : 'getContact',
+          'search/*query'                                                    : 'getSearch',
           '*path'                                                            : 'default'
         }
       });

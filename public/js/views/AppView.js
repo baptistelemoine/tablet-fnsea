@@ -19,9 +19,11 @@ define([
   'collections/tweets',
   'views/comps/ticker',
   'collections/photos',
-  'views/swipeView'
+  'views/swipeView',
+  'views/comps/search',
+  'collections/search'
 
-], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker, Photos, SwipeView){
+], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker, Photos, SwipeView, Search, SearchCollection){
 
 	return Backbone.View.extend({
 
@@ -31,7 +33,7 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias', 'getPhotos');
+			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias', 'getPhotos', 'getSearch');
 
 			//generic layout
 			this.layout();
@@ -42,6 +44,7 @@ define([
 			this.appRouter.on('route:getMedias', this.getMedias);
 			this.appRouter.on('route:getArticle', this.getArticle);
 			this.appRouter.on('route:getPhotos', this.getPhotos);
+			this.appRouter.on('route:getSearch', this.getSearch);
 			Backbone.history.start({pushState:false});
 
 		},
@@ -56,6 +59,9 @@ define([
 			this.header.render();
 
 			$('#article-complete').show();
+
+			var search = new Search();
+			search.render();
 
 			//if article open && nowhere clicked on stage :
 			//navigate to current list opened
@@ -143,8 +149,25 @@ define([
 			this.currentView = listView;
 		},
 
-		setupSearch:function(){
-			
+		getSearch:function(query){
+
+			if(!this.launchRequest()) return;
+
+			this.header.model.set({title:'recherche'});
+
+			var currentURL = this.apiURL.concat(Backbone.history.fragment);
+
+			var coll = new SearchCollection();
+			var listView = new ListView({collection:coll});
+			listView.collection.pager({
+				reset:true,
+				data:{ 'q':query },
+				success:function(data){
+					console.log(coll.totalRecords);
+				}
+			});
+			this.currentView = listView;
+
 		},
 
 		getHome:function(hash){
