@@ -203,6 +203,8 @@ define([
 
 			if(!this.launchRequest()) return;
 
+			console.log(type)
+
 			var listView;
 			switch(type){
 				case 'albums' :
@@ -210,12 +212,16 @@ define([
 					this.header.model.set({title:'photos'});
 				break;
 				case 'videos' :
-					listView = new ListView({collection:new Videos({nb_results:6})});
+					listView = new ListView({collection:new Videos({})});
 					this.header.model.set({title:'vidéos'});
 				break;
 			}
 
 			listView.collection.pager({
+				data:{
+					'types':'videos',
+					'sort':'uploaded:desc'
+				},
 				reset:true,
 				error:function(err){
 					console.error(err);

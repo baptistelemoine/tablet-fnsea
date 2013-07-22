@@ -12,21 +12,28 @@ define([
 			},
 
 			parse:function(response, options){
+
+				var item = {};
+				if(response.result) item = _.first(response.result.hits.hits)._source;
+				else item = response._source;
+
+				if(_.isArray(item)) item = _.first(item);
+
 				//add some properties
-				if(response.duration){
-					var duration = response.duration;
+				if(item.duration){
+					var duration = item.duration;
 					var minute = moment.duration(duration, 'seconds').minutes();
 					var second = moment.duration(duration, 'seconds').seconds();
 					second = second < 10 ? '0'+second : second;
-					response.duration_formated = minute + ':' + second;
+					item.duration_formated = minute + ':' + second;
 				}
-				if(response.uploaded){
-					response.time = moment(response.uploaded).fromNow();
+				if(item.uploaded){
+					item.time = moment(item.uploaded).fromNow();
 				}
-				else if(response.data.uploaded){
-					response.data.time = moment(response.data.uploaded).fromNow();
+				else if(item.data.uploaded){
+					item.data.time = moment(item.data.uploaded).fromNow();
 				}
-				return response;
+				return item;
 			}
 		});
 });
