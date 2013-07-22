@@ -12,13 +12,15 @@ define([
         model:video,
 
         initialize:function(param){
+            this.pUrl = param.url;
+            this.sortParam = param.sort;
             this.paginator_ui.perPage = param.nb_results || this.paginator_ui.perPage;
         },
 
         paginator_core: {
             type: 'GET',
             dataType: 'json',
-            url:'http://apifnsea.herokuapp.com/search/search',
+            url:function() { return this.pUrl; },
             cache:true
         },
 
@@ -35,7 +37,7 @@ define([
             'from': function() { return this.currentPage * this.perPage;},
             'size': function() { return this.perPage; },
             'type':'videos',
-            'sort':'uploaded:desc'
+            'sort':function () { return this.sortParam}
         },
 
         parse:function(response){

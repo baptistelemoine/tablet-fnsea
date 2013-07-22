@@ -30,9 +30,7 @@ define([
 				if(item.uploaded){
 					item.time = moment(item.uploaded).fromNow();
 				}
-				else if(item.data.uploaded){
-					item.data.time = moment(item.data.uploaded).fromNow();
-				}
+				
 				return item;
 			}
 		});

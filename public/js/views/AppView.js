@@ -21,13 +21,14 @@ define([
   'collections/photos',
   'views/swipeView',
   'views/comps/search',
-  'collections/search'
+  'collections/search',
+  'models/search'
 
-], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker, Photos, SwipeView, Search, SearchCollection){
+], function ($, _, Backbone, ConfigManager, Menu, Header, Router, Articles, ListView, Videos, MixCollection, Albums, Mixed, ArticleView, ArticleModel, VideoModel, AlbumModel, Tweets, Ticker, Photos, SwipeView, Search, SearchCollection, SearchModel){
 
 	return Backbone.View.extend({
 
-		apiURL : 'http://apifnsea.herokuapp.com/api/',
+		apiURL : 'http://apifnsea.herokuapp.com/',
 
 		currentListUrl:'',
 
@@ -104,7 +105,7 @@ define([
 			var item;
 			if(hash === 'videos') {
 				item = new VideoModel([], {
-					url:ConfigManager.gdataSingleVideoUrl(path)
+					url:self.apiURL.concat('search/search')
 				});
 			}
 			else if(hash === 'albums'){
@@ -115,11 +116,17 @@ define([
 			}
 			else {
 				item = new ArticleModel([],{
-					url:self.apiURL.concat(Backbone.history.fragment)
+					url:self.apiURL.concat('api/', Backbone.history.fragment)
 				});
 			}
+			var query = 'id:' + path;
+
 			this.articleView = new ArticleView({model:item});
 			item.fetch({
+				data:{
+					types:'videos',
+					q:query
+				},
 				success:function(data){
 					self.articleView.render();
 				}
@@ -132,12 +139,12 @@ define([
 
 			this.header.model.set({title:'actualités'});
 
-			var currentURL = this.apiURL.concat(Backbone.history.fragment);
+			var currentURL = this.apiURL.concat('api/', Backbone.history.fragment);
 
 			var listView = new ListView({
-				collection:new Articles({
+				collection:new SearchCollection({
 					url:currentURL,
-					nb_results:6
+					model:ArticleModel
 				})
 			});
 			listView.collection.pager({
@@ -155,7 +162,7 @@ define([
 
 			this.header.model.set({title:'recherche'});
 
-			var currentURL = this.apiURL.concat(Backbone.history.fragment);
+			var currentURL = this.apiURL.concat('search/', Backbone.history.fragment);
 
 			var coll = new SearchCollection();
 			var listView = new ListView({collection:coll});
@@ -178,7 +185,14 @@ define([
 
 			var self = this;
 
-			var articles = new Articles({
+			var listView = new ListView({collection:new SearchCollection({
+				url:self.apiURL.concat('search/search'),
+				model:SearchModel
+			})});
+			listView.collection.pager({reset:true});
+			this.currentView = listView;
+
+			/*var articles = new Articles({
 				url:self.apiURL.concat('all'),
 				nb_results:50
 			});
@@ -196,14 +210,14 @@ define([
 				mixed.fetch();
 				mixed.goTo(1);
 				self.currentView = listView;
-			});
+			});*/
 		},
 
 		getMedias:function(type){
 
 			if(!this.launchRequest()) return;
 
-			console.log(type)
+			var self = this;
 
 			var listView;
 			switch(type){
@@ -212,16 +226,17 @@ define([
 					this.header.model.set({title:'photos'});
 				break;
 				case 'videos' :
-					listView = new ListView({collection:new Videos({})});
+					listView = new ListView({collection:new SearchCollection({
+						url:self.apiURL.concat('search/search'),
+						model:VideoModel,
+						types:'videos',
+						sort:'uploaded:desc'
+					})});
 					this.header.model.set({title:'vidéos'});
 				break;
 			}
 
 			listView.collection.pager({
-				data:{
-					'types':'videos',
-					'sort':'uploaded:desc'
-				},
 				reset:true,
 				error:function(err){
 					console.error(err);

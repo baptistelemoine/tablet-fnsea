@@ -12,14 +12,13 @@ define([
 		},
 
 		parse:function(response, options){
-
-			console.log(response);
-
+			
 			var item = {};
 			if(response.result) item = _.first(response.result.hits.hits)._source;
 			else item = response._source;
 
 			if(_.isArray(item)) item = _.first(item);
+
 			//add some properties
 			if(item.themaUrl){
 				var thema = ConfigManager.getThemaProp(_.last(item.themaUrl.split('/')));
