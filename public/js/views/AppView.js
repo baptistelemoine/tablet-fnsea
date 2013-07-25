@@ -103,16 +103,19 @@ define([
 
 			var self = this;
 			var item;
+			var type = 'articles';
 			if(hash === 'videos') {
 				item = new VideoModel([], {
 					url:self.apiURL.concat('search/search')
 				});
+				type = 'videos';
 			}
 			else if(hash === 'albums'){
 				if(this.swipeView) this.swipeView.dispose();
 				item = new AlbumModel([], {
-					url:ConfigManager.GRAPH_URL.concat(path)
+					url:self.apiURL.concat('search/search')
 				});
+				type = 'photos';
 			}
 			else {
 				item = new ArticleModel([],{
@@ -124,7 +127,7 @@ define([
 			this.articleView = new ArticleView({model:item});
 			item.fetch({
 				data:{
-					types:'videos',
+					types:type,
 					q:query
 				},
 				success:function(data){
@@ -144,7 +147,10 @@ define([
 			var listView = new ListView({
 				collection:new SearchCollection({
 					url:currentURL,
-					model:ArticleModel
+					model:ArticleModel,
+					data:{
+						'sort':'pubdate:desc'
+					}
 				})
 			});
 			listView.collection.pager({
@@ -187,9 +193,13 @@ define([
 
 			var listView = new ListView({collection:new SearchCollection({
 				url:self.apiURL.concat('search/search'),
-				model:SearchModel
+				model:SearchModel,
+				data:{
+					'sort':'pubdate:desc'
+				}
+
 			})});
-			listView.collection.pager({reset:true});
+			listView.collection.fetch({reset:true});
 			this.currentView = listView;
 
 			/*var articles = new Articles({
@@ -222,15 +232,24 @@ define([
 			var listView;
 			switch(type){
 				case 'albums' :
-					listView = new ListView({collection:new Albums({nb_results:6})});
+					listView = new ListView({collection:new SearchCollection({
+						url:self.apiURL.concat('search/search'),
+						model:AlbumModel,
+						data:{
+							'types':'photos',
+							'sort':'pubdate:desc'
+						}
+					})});
 					this.header.model.set({title:'photos'});
 				break;
 				case 'videos' :
 					listView = new ListView({collection:new SearchCollection({
 						url:self.apiURL.concat('search/search'),
 						model:VideoModel,
-						types:'videos',
-						sort:'uploaded:desc'
+						data:{
+							'types':'videos',
+							'sort':'pubdate:desc'
+						}
 					})});
 					this.header.model.set({title:'vidéos'});
 				break;

@@ -21,7 +21,6 @@ define([
 
         initialize:function(options) {
           _.bindAll(this, 'render');
-          this.model.get('photos').on('reset', this.render);
         },
 
         render:function(){

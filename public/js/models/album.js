@@ -1,26 +1,29 @@
 define([
+	'underscore',
     'backbone',
-    'collections/photos'
+    'utils/ConfigManager'
 
-    ], function (Backbone, Photos) {
+    ], function (_, Backbone, ConfigManager) {
 
     return Backbone.Model.extend({
 
 		defaults:{
-			'description' : '',
 			'item_type':'album',
-			'likes':{ data:[] }
-		},
-
-		initialize:function(){
-			this.set('photos', new Photos([], {album:this}));
+			'description':''
 		},
 
 		parse:function(response, options){
-			if(response.created_time){
-				response.time = moment(response.created_time).fromNow();
+
+			var item = {};
+			if(response.result) item = _.first(response.result.hits.hits)._source;
+			else item = response._source;
+
+			if(_.isArray(item)) item = _.first(item);
+
+			if(item.created_time){
+				item.time = moment(item.uploaded).fromNow();
 			}
-			return response;
+			return item;
 		}
     });
 

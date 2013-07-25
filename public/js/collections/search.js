@@ -9,10 +9,13 @@ define([
     return Backbone.Paginator.requestPager.extend({
 
         initialize:function(param){
+
             this.pUrl = param.url;
-            this.sortParam = param.sort;
             this.model = param.model;
-            this.types = param.types;
+
+            this.types = param.data.types;
+            this.sortParam = param.data.sort;
+
             this.paginator_ui.perPage = param.nb_results || this.paginator_ui.perPage;
         },
 
@@ -35,7 +38,7 @@ define([
         server_api: {
             'from': function() { return this.currentPage * this.perPage;},
             'size': function() { return this.perPage; },
-            'type': function () { return this.types; },
+            'types': function () { return this.types; },
             'sort':function () { return this.sortParam; }
         },
 

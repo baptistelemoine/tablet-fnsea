@@ -8,14 +8,14 @@
   <div class="img-container">
     <ul>
       <% for (var i=0; i<5; i++) { %>
-        <% if(!photos.models.length) break; %>
-        <% if(photos.models.length === i) { %>
+        <% if(!photos.length) break; %>
+        <% if(photos.length === i) { %>
           <% for(var j=0; j<5 - i;j++) { %>
             <li></li>
           <% } %>
       <% break; %>
       <% } else { %>
-        <li><img src="<%= photos.at(i).get('source') %>" /></li>
+        <li><img src="<%= photos[i].source %>" /></li>
       <% } %>
       <% } %>
     </ul>
@@ -25,5 +25,5 @@
   </div>
   <div class="content-box-footer">
     <span class="icon-clock"></span><span><%= time %></span>
-    <span class="icon-users"></span><span>43 like this</span>
+    <span class="icon-users"></span><span><%= likes %> like this</span>
   </div>
