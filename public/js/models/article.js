@@ -1,37 +1,30 @@
 define([
-	'underscore',
     'backbone',
+    'underscore',
+    'models/item',
     'utils/ConfigManager'
 
-    ], function (_, Backbone, ConfigManager) {
+    ], function (Backbone, _, Item, ConfigManager) {
 
-    return Backbone.Model.extend({
+    return Item.extend({
 
-		defaults:{
-			'item_type':'article'
-		},
+		parse: function(response, options) {
 
-		parse:function(response, options){
-			
-			var item = {};
-			if(response.result) item = _.first(response.result.hits.hits)._source;
-			else item = response._source;
+			var result = Item.prototype.parse.call(this, response, options);
 
-			if(_.isArray(item)) item = _.first(item);
-
-			//add some properties
-			if(item.themaUrl){
-				var thema = ConfigManager.getThemaProp(_.last(item.themaUrl.split('/')));
-				item.thema = thema.name;
+			if(result.themaUrl){
+				var thema = ConfigManager.getThemaProp(_.last(result.themaUrl.split('/')));
+				result.thema = thema.name;
 			}
-			if(item.entry.publishedDate){
-				item.time = moment(item.entry.publishedDate).fromNow();
+			if(result.entry.publishedDate){
+				result.time = moment(result.entry.publishedDate).fromNow();
 			}
-			if(item.contract) item.item_type = 'job';
-			if(item.pressType) item.item_type = 'presse';
-			if(item.beginning) item.item_type = 'event';
-			return item;
+			if(result.contract) result.item_type = 'job';
+			if(result.pressType) result.item_type = 'presse';
+			if(result.beginning) result.item_type = 'event';
+
+			return result;
 		}
-    });
+	});
 
 });

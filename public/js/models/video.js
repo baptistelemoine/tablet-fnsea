@@ -1,37 +1,36 @@
 define([
-	'underscore',
-	'backbone'
+    'backbone',
+    'underscore',
+    'models/item',
+    'utils/ConfigManager'
 
-	], function (_, Backbone) {
+    ], function (Backbone, _, Item, ConfigManager) {
 
-		return Backbone.Model.extend({
+    return Item.extend({
 
-			defaults:{
-				'item_type':'video',
-				'viewCount':0
-			},
+		defaults:function(){
+			return _.extend({}, this.attributes, {'item_type':'video', 'viewCount':0});
+		},
 
-			parse:function(response, options){
+		parse: function(response, options) {
 
-				var item = {};
-				if(response.result) item = _.first(response.result.hits.hits)._source;
-				else item = response._source;
+			var result = Item.prototype.parse.call(this, response, options);
 
-				if(_.isArray(item)) item = _.first(item);
+			if(result.duration){
 
-				//add some properties
-				if(item.duration){
-					var duration = item.duration;
-					var minute = moment.duration(duration, 'seconds').minutes();
-					var second = moment.duration(duration, 'seconds').seconds();
-					second = second < 10 ? '0'+second : second;
-					item.duration_formated = minute + ':' + second;
-				}
-				if(item.uploaded){
-					item.time = moment(item.uploaded).fromNow();
-				}
-				
-				return item;
+				var duration = result.duration;
+				var minute = moment.duration(duration, 'seconds').minutes();
+				var second = moment.duration(duration, 'seconds').seconds();
+				second = second < 10 ? '0'+second : second;
+				result.duration_formated = minute + ':' + second;
 			}
-		});
+
+			if(result.uploaded){
+				result.time = moment(result.uploaded).fromNow();
+			}
+
+			return result;
+		}
+	});
+
 });

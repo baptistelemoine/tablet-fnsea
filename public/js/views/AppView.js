@@ -199,28 +199,8 @@ define([
 				}
 
 			})});
-			listView.collection.fetch({reset:true});
+			listView.collection.fetch({reset:true,});
 			this.currentView = listView;
-
-			/*var articles = new Articles({
-				url:self.apiURL.concat('all'),
-				nb_results:50
-			});
-			var videos = new Videos({nb_results:30});
-			var albums = new Albums({nb_results:20});
-
-			$.when(articles.pager(),videos.pager(),albums.pager())
-			.fail(function(err){ console.error(err); })
-			.done(function (){
-				var result = _.union(articles.models, videos.models, albums.models);
-				var mixed = new Mixed(result, {perPage:6});
-				var listView = new ListView({
-					collection:mixed
-				});
-				mixed.fetch();
-				mixed.goTo(1);
-				self.currentView = listView;
-			});*/
 		},
 
 		getMedias:function(type){
@@ -230,27 +210,25 @@ define([
 			var self = this;
 
 			var listView;
+
+			var options = {
+				url:self.apiURL.concat('search/search'),
+				data:{
+					'sort':'pubdate:desc'
+				}
+			};
+
 			switch(type){
 				case 'albums' :
-					listView = new ListView({collection:new SearchCollection({
-						url:self.apiURL.concat('search/search'),
-						model:AlbumModel,
-						data:{
-							'types':'photos',
-							'sort':'pubdate:desc'
-						}
-					})});
+					options.model = AlbumModel;
+					options.data.types = 'photos';
+					listView = new ListView({collection:new SearchCollection(options)});
 					this.header.model.set({title:'photos'});
 				break;
 				case 'videos' :
-					listView = new ListView({collection:new SearchCollection({
-						url:self.apiURL.concat('search/search'),
-						model:VideoModel,
-						data:{
-							'types':'videos',
-							'sort':'pubdate:desc'
-						}
-					})});
+					options.model = VideoModel;
+					options.data.types = 'videos';
+					listView = new ListView({collection:new SearchCollection(options)});
 					this.header.model.set({title:'vidéos'});
 				break;
 			}
@@ -258,7 +236,7 @@ define([
 			listView.collection.pager({
 				reset:true,
 				error:function(err){
-					console.error(err);
+					console.error('oups', err);
 				}
 			});
 			this.currentView = listView;
