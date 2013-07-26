@@ -16,6 +16,8 @@ define([
             this.types = param.data.types;
             this.sortParam = param.data.sort;
 
+            this.query = param.data.q;
+
             this.paginator_ui.perPage = param.nb_results || this.paginator_ui.perPage;
         },
 
@@ -39,7 +41,8 @@ define([
             'from': function() { return this.currentPage * this.perPage;},
             'size': function() { return this.perPage; },
             'types': function () { return this.types; },
-            'sort':function () { return this.sortParam; }
+            'sort':function () { return this.sortParam; },
+            'q':function () { return this.query; }
         },
 
         parse:function(response){

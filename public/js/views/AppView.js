@@ -138,7 +138,7 @@ define([
 		},
 
 		getArticleList:function(hash){
-			console.log(hash)
+
 			if(!this.launchRequest()) return;
 
 			this.header.model.set({title:'actualités'});
@@ -169,13 +169,18 @@ define([
 
 			this.header.model.set({title:'recherche'});
 
-			var currentURL = this.apiURL.concat('search/', Backbone.history.fragment);
+			var currentURL = this.apiURL.concat('search/search');
 
-			var coll = new SearchCollection();
+			var coll = new SearchCollection({
+				url:currentURL,
+				model:SearchModel,
+				data:{
+					'q':query
+				}
+			});
 			var listView = new ListView({collection:coll});
 			listView.collection.pager({
 				reset:true,
-				data:{ 'q':query },
 				success:function(data){
 					console.log(coll.totalRecords);
 				}
