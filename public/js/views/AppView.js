@@ -34,7 +34,7 @@ define([
 
 		initialize:function(){
 
-			_.bindAll(this, 'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias', 'getPhotos', 'getSearch');
+			_.bindAll(this,'layout', 'getArticleList', 'getHome', 'getArticle', 'getMedias', 'getPhotos', 'getSearch');
 
 			//generic layout
 			this.layout();
@@ -46,6 +46,7 @@ define([
 			this.appRouter.on('route:getArticle', this.getArticle);
 			this.appRouter.on('route:getPhotos', this.getPhotos);
 			this.appRouter.on('route:getSearch', this.getSearch);
+
 			Backbone.history.start({pushState:false});
 
 		},
@@ -136,8 +137,8 @@ define([
 			});
 		},
 
-		getArticleList:function(){
-
+		getArticleList:function(hash){
+			console.log(hash)
 			if(!this.launchRequest()) return;
 
 			this.header.model.set({title:'actualités'});
