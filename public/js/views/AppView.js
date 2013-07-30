@@ -62,8 +62,8 @@ define([
 
 			$('#article-complete').show();
 
-			var search = new Search();
-			search.render();
+			this.search = new Search();
+			this.search.render();
 
 			//if article open && nowhere clicked on stage :
 			//navigate to current list opened
@@ -96,6 +96,8 @@ define([
 			}
 
 			this.currentListUrl = currentURL;
+
+			this.search.close();
 
 			return true;
 		},
@@ -182,7 +184,7 @@ define([
 			listView.collection.pager({
 				reset:true,
 				success:function(data){
-					console.log(coll.totalRecords);
+					// console.log(coll.totalRecords);
 				}
 			});
 			this.currentView = listView;

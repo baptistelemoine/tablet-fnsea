@@ -434,9 +434,6 @@ label.checkbox span {
 .checkbox.inline + .checkbox.inline {
   margin-left: 25px;
 }
-.button {
-  cursor: pointer;
-}
 input[type="checkbox"] {
   display: none;
 }
@@ -1263,6 +1260,9 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   color: white;
   opacity: .3;
   font-style: italic;
+}
+#search .button {
+  cursor: pointer;
 }
 #search .button.generic {
   float: left;

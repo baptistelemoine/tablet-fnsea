@@ -10,14 +10,26 @@ define([
 
 		el:'#search',
 
+        events:{
+            'click .button' : 'onClick'
+        },
+
 		template:_.template(SearchTmpl),
 
-        initialize:function(options) {
-          _.bindAll();
-        },
+        $handler:$('#handler-search'),
 
         render:function(){
 			this.$el.append(this.template());
+        },
+
+        close:function(){
+            if(this.$handler.is(':checked')) this.$handler.prop('checked', false);
+        },
+
+        onClick:function(e){
+            var input = $('#search-text').val();
+            if(input !== '')
+                Backbone.history.navigate('search/'.concat(input), {trigger:true, replace:false});
         }
 
     });
