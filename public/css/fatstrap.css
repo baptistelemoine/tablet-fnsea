@@ -423,8 +423,19 @@ ul.combo-box.accordion .collapse > div {
   content: '🕔';
 }
 /* '\1f554' */
-.checkbox {
+label.checkbox {
   padding-left: 0;
+  text-align: center;
+}
+label.checkbox span {
+  color: white;
+  margin-left: 30px;
+}
+.checkbox.inline + .checkbox.inline {
+  margin-left: 25px;
+}
+.button {
+  cursor: pointer;
 }
 input[type="checkbox"] {
   display: none;
@@ -433,16 +444,12 @@ input[type="checkbox"] + div.regular-checkbox {
   width: 20px;
   height: 20px;
   pointer-events: none;
-  position: relative;
+  position: absolute;
   border: 1px solid rgba(255, 255, 255, 0);
 }
 input[type="checkbox"] + div.regular-checkbox.dark {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.05);
-}
-input[type="checkbox"] + div.regular-checkbox span {
-  position: absolute;
-  left: 30px;
 }
 input[type="checkbox"]:checked + div.regular-checkbox.purple {
   background-color: #6a5a8c;
@@ -1256,15 +1263,6 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   color: white;
   opacity: .3;
   font-style: italic;
-}
-#search label {
-  text-align: center;
-}
-#search .checkbox input[type="checkbox"] {
-  float: none;
-}
-#search .checkbox.inline + .checkbox.inline {
-  margin-left: 110px;
 }
 #search .button.generic {
   float: left;

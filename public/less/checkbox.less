@@ -1,8 +1,21 @@
 
 //todo : fix label vertical alignment for big one;
 
-.checkbox{
+label.checkbox{
     padding-left: 0;
+    text-align: center;
+    span{
+        color: white;
+        margin-left: 30px;
+    }
+}
+
+.checkbox.inline + .checkbox.inline {
+    margin-left: 25px;
+}
+
+.button{
+    cursor: pointer;
 }
 
 input[type="checkbox"]{
@@ -10,20 +23,16 @@ input[type="checkbox"]{
 }
 
 input[type="checkbox"]{
-    + div.regular-checkbox {        
+    + div.regular-checkbox {
         width: 20px;
         height: 20px;
         pointer-events: none;
-        position: relative;
+        position: absolute;
         border: 1px solid rgba(255, 255, 255, 0);
 
         &.dark{
             color:#fff;
             border: 1px solid rgba(255, 255, 255, .05);
-        }
-        span{
-            position: absolute;
-            left:30px;
         }
     }
     &:checked + div.regular-checkbox {
