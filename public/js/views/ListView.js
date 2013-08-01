@@ -71,7 +71,6 @@ define([
 
         //important note ! Use detach instead of empty
         //to prevent item rendering events lost
-
         layoutColumns:function(){
             var self = this;
 
