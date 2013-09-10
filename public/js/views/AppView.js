@@ -227,7 +227,7 @@ define([
 			};
 
 			switch(type){
-				case 'albums' :
+				case 'albums':
 					options.model = AlbumModel;
 					options.data.types = 'photos';
 					listView = new ListView({collection:new SearchCollection(options)});
