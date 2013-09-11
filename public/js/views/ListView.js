@@ -10,7 +10,8 @@ define([
     'views/renderer/VideoItem',
     'views/renderer/AlbumItem',
     'enquire',
-    'views/comps/filter'
+    'views/comps/filter',
+    'views/renderer/SearchResult'
 
     ], function ($, _, Backbone, ArticleItem, ArticleTmpl, JobTmpl, EventTmpl, PresseTmpl, VideoItem, AlbumItem, enquire, Filter) {
 
@@ -23,10 +24,12 @@ define([
         },
         $preloader: $('div.spinner-container'),
         isLoading: false,
+        isSearchList:false,
 
         initialize:function(options) {
 
             _.bindAll(this, 'render', 'addAll', 'checkScroll');
+            this.isSearchList = options.isSearchList;
             this.cache = [];
             this.collection.on('reset', this.addAll);
 
@@ -88,6 +91,9 @@ define([
             this.collection.each(this.render);
             this.isLoading = false;
 
+            //add box result at the top of the list
+            if(this.isSearchList) this.addSearchBoxResult();
+
             var self = this;
             enquire.unregister();
             enquire.register('screen and (max-width:800px)', {
@@ -102,6 +108,10 @@ define([
                     self.layoutColumns();
                 }
             });
+        },
+
+        addSearchBoxResult:function(){
+
         },
 
         checkScroll:function(e){

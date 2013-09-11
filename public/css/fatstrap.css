@@ -832,6 +832,9 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 .content-box.video-box .title-container {
   padding-top: 0;
 }
+.content-box.search-result {
+  background-color: #232323;
+}
 @media screen and (min-width: 800px) and (max-width: 1024px) {
   .content-box {
     width: 80%;

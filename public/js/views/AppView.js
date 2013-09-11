@@ -180,7 +180,7 @@ define([
 					'q':query
 				}
 			});
-			var listView = new ListView({collection:coll});
+			var listView = new ListView({collection:coll, isSearchList:true});
 			listView.collection.pager({
 				reset:true,
 				success:function(data){
