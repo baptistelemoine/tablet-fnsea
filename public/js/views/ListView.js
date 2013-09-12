@@ -13,7 +13,7 @@ define([
     'views/comps/filter',
     'views/renderer/SearchResult'
 
-    ], function ($, _, Backbone, ArticleItem, ArticleTmpl, JobTmpl, EventTmpl, PresseTmpl, VideoItem, AlbumItem, enquire, Filter) {
+    ], function ($, _, Backbone, ArticleItem, ArticleTmpl, JobTmpl, EventTmpl, PresseTmpl, VideoItem, AlbumItem, enquire, Filter, SearchResult) {
 
     return Backbone.View.extend({
 
@@ -112,9 +112,18 @@ define([
 
         addSearchBoxResult:function(){
 
+            var searchData = new Backbone.Model({});
+            searchData.set('totalRecords', this.collection.totalRecords);
+            searchData.set('query', this.collection.query);
+            // searchData.set('totalRecords', this.collection.totalRecords);
+
+            var searchResult = new SearchResult({model:searchData});
+            this.$container.append(searchResult.render().el);
+            this.cache.unshift(searchResult.el);
         },
 
         checkScroll:function(e){
+
             if(this.el.scrollTop === 0) return;
             var triggerPoint = 5;
             var self = this;

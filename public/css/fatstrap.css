@@ -835,6 +835,20 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 .content-box.search-result {
   background-color: #232323;
 }
+.content-box.search-result .content-box-header {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.content-box.search-result .content-box-header span {
+  color: white;
+}
+.content-box.search-result .summary-container {
+  padding: 30px;
+}
+.content-box.search-result .summary-container span.search-highlight {
+  color: white;
+  background: #1f7f5c;
+  padding: 1px 5px;
+}
 @media screen and (min-width: 800px) and (max-width: 1024px) {
   .content-box {
     width: 80%;

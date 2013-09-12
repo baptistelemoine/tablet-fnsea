@@ -1,9 +1,10 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
+    'text!templates/searchResult.html'
 
-    ], function ($, _, Backbone) {
+    ], function ($, _, Backbone, searchResultTmpl) {
 
     return Backbone.View.extend({
 
@@ -15,16 +16,16 @@ define([
             'click :not(.button)':'onClick'
         },
 
+        template:_.template(searchResultTmpl),
+
         initialize:function(model, options) {
 
-            this.template = _.template(options.itemRenderer);
             _.bindAll(this, 'render', 'onClick');
         },
 
         render:function(){
-
 			// this.model.set({'count':34, silent:true});
-			this.$el.append(this.template(this.model.toJSON()));
+            this.$el.append(this.template(this.model.toJSON()));
 			return this;
         },
 
