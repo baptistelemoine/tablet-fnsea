@@ -840,14 +840,16 @@ ul.list.background-enabled li span[class^="icon-angle"] {
 }
 .content-box.search-result .content-box-header span {
   color: white;
+  font-size: 16px;
 }
 .content-box.search-result .summary-container {
   padding: 30px;
 }
 .content-box.search-result .summary-container span.search-highlight {
   color: white;
-  background: #1f7f5c;
-  padding: 1px 5px;
+}
+.content-box.search-result .btn-container {
+  padding: 10px 30px 40px;
 }
 @media screen and (min-width: 800px) and (max-width: 1024px) {
   .content-box {

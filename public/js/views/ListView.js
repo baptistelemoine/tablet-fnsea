@@ -88,11 +88,12 @@ define([
 
         addAll:function(){
 
+            //add box result at the top of the list, but only one time,
+            //not for all page requests
+            if(!this.cache.length) if(this.isSearchList) this.addSearchBoxResult();
+
             this.collection.each(this.render);
             this.isLoading = false;
-
-            //add box result at the top of the list
-            if(this.isSearchList) this.addSearchBoxResult();
 
             var self = this;
             enquire.unregister();
@@ -115,7 +116,6 @@ define([
             var searchData = new Backbone.Model({});
             searchData.set('totalRecords', this.collection.totalRecords);
             searchData.set('query', this.collection.query);
-            // searchData.set('totalRecords', this.collection.totalRecords);
 
             var searchResult = new SearchResult({model:searchData});
             this.$container.append(searchResult.render().el);

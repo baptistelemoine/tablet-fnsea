@@ -13,7 +13,7 @@ define([
 		className:'content-box search-result',
 
         events:{
-            'click :not(.button)':'onClick'
+            // 'click :not(.button)':'onClick'
         },
 
         template:_.template(searchResultTmpl),
