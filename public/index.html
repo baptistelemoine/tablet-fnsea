@@ -6,7 +6,24 @@
 
   <link rel="stylesheet" type="text/css" href="css/style-min.css">
   <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <script type="text/javascript">
 
+   // Add a script element as a child of the body
+   function downloadJSAtOnload() {
+
+     var source = document.createElement("script");
+     source.src = "js/fnsea-tablet-min.js";
+     document.body.appendChild(source);
+   }
+
+   // Check for browser support of event handling capability
+   if (window.addEventListener)
+    window.addEventListener("load", downloadJSAtOnload, false);
+   else if (window.attachEvent)
+    window.attachEvent("onload", downloadJSAtOnload);
+   else window.onload = downloadJSAtOnload;
+
+  </script>
 </head>
 
 <body>
@@ -41,6 +58,6 @@
 
   <!-- Load the app with require -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.5/require.min.js"></script>
-  <script src="js/fnsea-tablet-min.js"></script>
+  <!--<script src="js/fnsea-tablet-min.js"></script>-->
 </body>
 </html>
