@@ -3,11 +3,9 @@
 <head>
   <title>FNSEA tablet</title>    
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="css/style-min.css">
-  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <script type="text/javascript">
 
-   // Defer js loading after page rendering
+   // Defer js and css loading after page rendering
    function downloadJSAtOnload() {
 
      var source = document.createElement("script");
@@ -15,14 +13,33 @@
      document.body.appendChild(source);
    }
 
+   function loadCss(url) {
+       var link = document.createElement("link");
+       link.type = "text/css";
+       link.rel = "stylesheet";
+       link.href = url;
+       document.getElementsByTagName("head")[0].appendChild(link);
+   }
+
    // Check for browser support of event handling capability
    if (window.addEventListener)
-    window.addEventListener("load", downloadJSAtOnload, false);
+    window.addEventListener("load", function () {
+      loadCss('css/style-min.css');
+      loadCss('http://fonts.googleapis.com/css?family=Montserrat');
+      downloadJSAtOnload();
+    }, false);
    else if (window.attachEvent)
-    window.attachEvent("onload", downloadJSAtOnload);
+    window.attachEvent("onload", function(){
+      loadCss('css/style-min.css');
+      loadCss('http://fonts.googleapis.com/css?family=Montserrat');
+      downloadJSAtOnload();
+    });
    else window.onload = downloadJSAtOnload;
 
   </script>
+  <style>
+    input[type="checkbox"]{ display: none; }
+  </style>
 </head>
 
 <body>
@@ -57,6 +74,5 @@
 
   <!-- Load the app with require -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.5/require.min.js"></script>
-  <!--<script src="js/fnsea-tablet-min.js"></script>-->
 </body>
 </html>
