@@ -24,6 +24,10 @@ define([
         render:function(){
 
 			this.model.set({'count':34, silent:true});
+            if(this.model.get('entry').image){
+                var newURL = this.model.get('entry').image.replace('aspx', 'ashx');
+                this.model.set({'imageURL':newURL, silent:true});
+            }
 			this.$el.append(this.template(this.model.toJSON()));
 			return this;
         },

@@ -26,6 +26,10 @@ define([
 
             switch(this.model.get('item_type')){
                 case 'article' :
+                    if(this.model.get('entry').image){
+                        var newURL = this.model.get('entry').image.replace('aspx', 'ashx');
+                        this.model.set({'imageURL':newURL, silent:true});
+                    }
                     this.template = _.template(ArticleTmpl);
                 break;
                 case 'job' :

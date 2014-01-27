@@ -8,7 +8,7 @@
   <div class="title-container">
     <p><%= entry.title %></p>
   </div>
-  <% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+entry.image %>" /><% } %>
+  <% if(entry.image) { %><img src="<%= 'http://www.fnsea.fr'+imageURL %>" /><% } %>
   <div class="summary-container">
     <% if(entry.summary.length > 250) { %><%= entry.summary.substring(0, 250) %> [...]</div><% } else { %>
     <%= entry.summary %><% } %>
