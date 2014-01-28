@@ -875,6 +875,7 @@ ul.list.background-enabled li span[class^="icon-angle"] {
   margin: 19px;
   font-size: 22px;
   color: #fff;
+  pointer-events: none;
 }
 .button.rounded {
   border-radius: 30px;
